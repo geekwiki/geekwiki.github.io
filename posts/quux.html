@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/assets/css/typo-open-sans-pt-sans-narrow.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css">
     <!-- End CSS-->
-    <title> home
+    <title> Article Called: Quux
     </title>
   </head>
   <body>
@@ -88,8 +88,48 @@
       <!-- Begin Body Content-->
       <div class="container">
         <!-- Content-->
-        <h1>TEST!..</h1>
-        <p>This is a conent test</p>
+        <!-- Begin Box Page-->
+        <article class="box-page">
+          <!-- Begin Alpha Box-->
+          <div class="box-alpha">
+            <!-- Begin Alpha Tags-->
+            <ul class="tags">
+              <li class="tag-category"><a href="#"><span data-hover="Livestream">Livestream</span></a></li>
+              <li class="tag-category"><a href="#"><span data-hover="Some category">Some category</span></a></li>
+              <li class="tag-category"><a href="#"><span data-hover="4 comments">4 comments</span></a></li>
+            </ul>
+            <!-- End Alpha Tags-->
+          </div>
+          <!-- End Alpha Box-->
+          <!-- Begin Beta Box-->
+          <div class="box-beta">
+            <!-- Begin Beta Content-->
+            <div class="box-content">
+              <h2 class="box-title"> Article Called: Quux
+              </h2>
+              <p class="small-title"><span class="subtitle-value"><strong>Subtitle for Quux</strong></span></p>
+              <!-- Begin Page Contents--><h1 id="example-quux">Example: Quux</h1>
+<p>This is testing the <strong>author</strong> metadata <em>object</em> with the <strong>firstname</strong>, <strong>lastname</strong>, <strong>username</strong> and <strong>format</strong> (which is <code>lastname, firstname</code>), as well as <strong>subtitle</strong>, which supersedes the <em>author</em> value</p>
+<p>This Articles Metadata:</p>
+<pre><code>title: &quot;Article Called: Quux&quot;
+layout: articles/article-page.pug
+summary: This is the summary of the post called Quux
+author: 
+  format: lastname, firstname
+  firstname: Justin
+  lastname: Hyland
+  username: jhyland87
+subtitle: Subtitle for Quux
+</code></pre>
+              <!-- End Page Contents--><!-- [include] Begin: partials/share.pug --><!-- [include] End: partials/share.pug -->
+            </div>
+            <!-- End Beta Content-->
+            <!-- Begin Beta Tags-->
+            <!-- End Beta Tags-->
+          </div>
+          <!-- End Beta Box-->
+        </article>
+        <!-- End Box Page-->
       </div>
       <!-- End Body Content-->
       <!-- // .container-->
