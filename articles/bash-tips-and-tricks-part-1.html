@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+  <head>
+    <!-- Begin Meta-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-TileImage" content="/assets/content/live/thumbs/favicon-270x270.png">
+    <!-- End Meta-->
+    <!-- Begin CSS-->
+    <link rel="icon" href="/assets/content/live/thumbs/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" href="/assets/content/live/thumbs/favicon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="/assets/content/live/thumbs/favicon-180x180.png">
+    <link rel="stylesheet" href="/assets/css/style-neutral.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="/assets/css/typo-open-sans-pt-sans-narrow.min.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css">
+    <!-- End CSS-->
+    <title> Bash Tips And Tricks (Part 1)
+    </title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- Begin Header-->
+      <header id="header">
+        <!-- Begin header-->
+        <div class="container">
+          <div class="main vertical-align-middle horizontal-align-center">
+            <div class="logo"><a href="/" title="Geek Wiki"><img class="logo-img" src="/assets/img/gw-logo.png" width="247" height="97" srcset="/assets/img/gw-logo.png 247w, /assets/img/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="GeekWiki"></a></div>
+            <!-- // .logo-->
+            <!-- Begin Nav Left-->
+            <nav class="dark">
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a>
+                  <ul>
+                    <li><a href="/about/admins.html">Admins</a></li>
+                  </ul>
+                </li>
+                <li><a href="/articles">Content</a>
+                  <ul>
+                    <li><a href="/articles">View Articles</a></li>
+                    <li><a href="/articles/publish.html">Publish Article</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+            <!-- End Nav Left-->
+            <!-- Begin Nav Right-->
+            <nav class="dark">
+              <ul>
+                <li><a href="/right/1">Right Item 1</a></li>
+                <li><a href="/right/2">Right Item 2</a></li>
+                <li><a href="#">Right Group</a>
+                  <ul>
+                    <li><a href="#foo">Foo</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+            <!-- End Nav Right-->
+          </div>
+          <!-- // .main-->
+        </div>
+        <!-- // .container-->
+        <!-- End header-->
+      </header>
+      <!-- End Header-->
+      <!-- Begin Body Content-->
+      <div class="container">
+        <!-- Content-->
+        <!-- All Local Variables--><!-- Local Vars: {"pretty":true,"site":{"title":"Some Blog","theme":"neutral"},"social_networks":{"facebook":{"title":"Facebook","icon":"facebook","href":"https://www.facebook.com/sharer/sharer.php?u={{href}}","svg":"M6.546,15V8.805H4.46V6.39h2.086V4.607c0-2.066,1.263-3.19,3.106-3.19c0.883,0,1.642,0.064,1.863,0.094v2.16 h-1.281c-1,0-1.194,0.476-1.194,1.176v1.54h2.39l-0.31,2.416H9.04V15"},"twitter":{"title":"Twitter","icon":"twitter","href":"https://twitter.com/home?status={{href}}","svg":"M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.375-1.337.648-2.085.795-.598-.638-1.45-1.036-2.396-1.036-1.812 0-3.282 1.468-3.282 3.28 0 .258.03.51.085.75C5.152 5.39 2.733 4.084 1.114 2.1.83 2.583.67 3.147.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.416-.02-.617-.058.418 1.304 1.63 2.253 3.067 2.28-1.124.88-2.54 1.404-4.077 1.404-.265 0-.526-.015-.783-.045 1.453.93 3.178 1.474 5.032 1.474 6.038 0 9.34-5 9.34-9.338 0-.143-.004-.284-.01-.425.64-.463 1.198-1.04 1.638-1.7z"},"googleplus":{"title":"Google+","icon":"googleplus","href":"https://plus.google.com/share?url={{href}}","svg":"M5.09 7.273v1.745H7.98c-.116.75-.873 2.197-2.887 2.197-1.737 0-3.155-1.44-3.155-3.215S3.353 4.785 5.09 4.785c.99 0 1.652.422 2.03.786l1.382-1.33c-.887-.83-2.037-1.33-3.41-1.33C2.275 2.91 0 5.184 0 8s2.276 5.09 5.09 5.09c2.94 0 4.888-2.065 4.888-4.974 0-.334-.036-.59-.08-.843H5.09zM16 7.273h-1.455V5.818H13.09v1.455h-1.454v1.454h1.455v1.455h1.455V8.727H16"},"pinterest":{"title":"Pintrest","icon":"pinterest","href":"https://pinterest.com/pin/create/button/?url={{href}}&media={{href}}&description={{summary}}","svg":"M8 0C3.582 0 0 3.582 0 8c0 3.39 2.108 6.285 5.084 7.45-.07-.633-.133-1.604.028-2.295.146-.625.938-3.977.938-3.977s-.24-.48-.24-1.188c0-1.11.646-1.943 1.448-1.943.683 0 1.012.513 1.012 1.127 0 .687-.436 1.713-.662 2.664-.19.797.4 1.445 1.185 1.445 1.42 0 2.514-1.498 2.514-3.662 0-1.915-1.376-3.254-3.342-3.254-2.276 0-3.61 1.707-3.61 3.472 0 .687.263 1.424.593 1.825.066.08.075.15.057.23-.06.252-.196.796-.223.907-.035.146-.115.178-.268.107-.998-.465-1.624-1.926-1.624-3.1 0-2.524 1.834-4.84 5.287-4.84 2.774 0 4.932 1.977 4.932 4.62 0 2.757-1.74 4.977-4.153 4.977-.81 0-1.572-.422-1.833-.92l-.5 1.902c-.18.695-.667 1.566-.994 2.097.75.232 1.545.357 2.37.357 4.417 0 8-3.582 8-8s-3.583-8-8-8z"},"linkedin":{"title":"LinkedIn","icon":"linkedin","href":"https://www.linkedin.com/shareArticle?mini=true&url={{href}}&title={{title}}&summary={{summary}}&source={{href}}","svg":"M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51V7.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z"},"stumbleupon":{"title":"StumbleUpon","icon":"stumbleupon","href":"http://www.stumbleupon.com/submit?url={{href}}&title={{title}}","svg":"M8 0C3.58 0 0 3.582 0 8c0 4.42 3.58 8 8 8s8-3.58 8-8c0-4.418-3.58-8-8-8zm-.412 5.938v3.3c0 1.236-1.128 2.167-2.3 2.167-1.096 0-2.12-.518-2.236-1.756V7.587h1.65v1.65c0 .41.29.477.585.477.293 0 .65-.066.65-.478v-3.3c.034-1.236 1.053-2.01 2.194-2.01 1.162 0 1.932.878 1.932 2.01v.696l-.818.39-.832-.39V5.526s-.11-.12-.28-.12c-.283 0-.544.12-.544.532zm5.36 3.3c0 1.236-1.06 2.074-2.235 2.074-1.174 0-2.3-.838-2.3-2.075v-1.65h1.65v1.65c0 .412.357.478.65.478.294 0 .586-.066.586-.478v-1.65h1.648v1.65z"}},"technical":{"defaults":{"share":{"title":"Default Title","summary":"Default Summary","href":"#Default-Href","networks":["facebook","twitter","googleplus","pinterest","linkedin","stumbleupon"]},"export":{"formats":["pdf","docx"]}},"verbosity":{"all":true,"include":true}},"title":"Bash Tips And Tricks (Part 1)","layout":"articles/article-page.pug","summary":"Bash Tips And Tricks (Part 1)","featured_image":"assets/articles/linux-commands-2.jpg","create_date":"02-12-2014","author":{"firstname":"Justin","lastname":"Hyland","format":"firstname lastname (username)","username":"jhyland87"},"tags":null,"share":{"title":"Bash Tips And Tricks (Part 1)","summary":"Bash Tips And Tricks (Part 1)","href":"###bash-tips-and-tricks-part-1###"},"contents":"<p>I have always thought of bash as a &quot;Quick &#39;n Dirty&quot; way of taking care of things, it isn&#39;t by any means a powerful language. It&#39;s not meant for writing programs, not meant for creating games, not meant for much other than linux system administration. My &quot;Rule Of Thumb&quot;, is if someone gives me a task to complete, I do it manually, if they come twice or three times, I automate it. If I think it will take more than 100 lines of code, I use something other than bash.... Perl or Python perhaps. I don&#39;t usually use PHP for CLI apps, but sometimes there are exceptions to the rule. Below are a few tricks I have learned while creating some bash scripts.Feel free to add your own in the comments!</p>\n<h4 id=\"1-getting-the-correct-error-code-of-a-command-thats-before-a-pipe\">1) Getting The Correct Error Code Of A Command Thats Before A Pipe</h4>\n<p>A lot of bash scripting consists of executing one thing, and having the output piped ( <strong>|</strong> ) into another command, for example...</p>\n<pre><code class=\"lang-bash\">$ /usr/bin/w | grep jhyland | wc -l\n1\n</code></pre>\n<p>This executes the <em>/usr/bin/w</em> binary, then pipes it to the <em>grep</em> command, which will only return lines that has jhyland in it, then counts the number of lines. So now we know that jhyland is logged into this server only once. Another commonly used tactic is getting the exit code of the last command, which is the $? variable. You can execute a command, then with a conditional statement, see what the exit code was, and process something else accordingly, example below.</p>\n<pre><code class=\"lang-bash\">#!/bin/bash\n\nmkdir /tmp/jhyland\n\nif [[ $? -ne 0 ]]\nthen\n echo &quot;Error while creating /tmp/jhyland&quot;\n exit 1\nelse\n echo &quot;/tmp/jhyland has been created&quot;\nfi\n</code></pre>\n<p>The $? will either return 0 (success) or 1 (fail). But what about that command I showed you above? The /usr/bin/w | grep jhyland | wc -l, if that gets executed, then $? will show the exit code for the wc -l part, when what you really want, is the exit code for the /usr/bin/w command. The solution is the system variable $PIPESTATUS, (Well, I guess it&#39;s an array). This holds all of the exit codes for every command that was previously ran (Keep in mind, this gets reset every time you run a new command. Heres an example:</p>\n<pre><code class=\"lang-bash\">#!/bin/bash\n\n/usr/bin/w | grep jhyland | wc -l\n\nif [[ ${PIPESTATUS[0]} -ne 0 ]]\nthen\necho &quot;Error while running /usr/bin/w&quot;\nexit 1\nelse\necho &quot;/usr/bin/w ran just fine&quot;\nfi\n</code></pre>\n<p>Here&#39;s a slightly better example of how to leverage it:</p>\n<pre><code class=\"lang-bash\">#!/bin/bash\n\nuser=&quot;jhyland&quot;\nip=&quot;192.168.1&quot;\n\nwho | grep $user | grep $ip &amp;&gt;/dev/null\n\nif [[ ${PIPESTATUS[1]} -ne 0 ]]; then\n echo &quot;No $user on this server&quot;\nelif [[ ${pipestatus[2]} -ne 0 ]]; then\n echo &quot;The user $user is on this server, just not from an IP matching $ip&quot;\nelse\n echo &quot;The user $user is on this server, from an IP matching $ip&quot;\nfi\n</code></pre>\n<p><a href=\"/articles/viewing-bash-exit-status-codes-with-pipes.html\">Heres a more in-depth tutorial.</a></p>\n<hr>\n<h4 id=\"2-using-_-_-and-_-_-instead-of-conditional-statements\">2) Using <em>&amp;&amp;</em> and <em>||</em> Instead of Conditional Statements</h4>\n<p>Most Bash scripting is comprised of executing commands, then executing more commands based off of the output or result of the previous command.</p>\n<p>If you learn how to use the <em>&amp;&amp;</em> and <em>||</em> operators, you&#39;ll find you can convert a lot of scripts to one-liners, or reduce the amount of lines in some of your existing scripts.</p>\n<p>The <em>||</em> operator is basically &quot;OR&quot;, it&#39;s somewhat like using the <em>-ne</em> operator in a conditional statement.</p>\n<p>Small example... This following script just creates a directory, then backsup (tar&#39;s) a directory and throws the tar into the newly created directory</p>\n<pre><code class=\"lang-bash\">mkdir -p  /some/test/directory &amp;&gt;/dev/null\nif [[ $? -ne 0 ]]; then\n    exit 1\nfi\n\ntar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null\nif [[ $? -ne 0 ]]; then\n    exit 1\nfi\n</code></pre>\n<p>Now this little script can actually be reduced down to two lines of code, using the <em>||</em> operator. Heres the example..</p>\n<pre><code class=\"lang-bash\">mkdir -p /some/test/directory &amp;&gt;/dev/null || exit 1\ntar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null ||  exit 1\n</code></pre>\n<p>Those two snippets do the exact same thing!</p>\n<p>Let&#39;s get a little more complicated. Lets add confirmations into the script.</p>\n<pre><code class=\"lang-bash\">mkdir -p  /some/test/directory &amp;&gt;/dev/null\nif [[ $? -ne 0 ]]; then\n    echo &quot;Failed to mkdir&quot;\n    exit 1\nelse\n    echo &quot;Successfully mkdir&#39;d&quot;\nfi\n\ntar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null\nif [[ $? -ne 0 ]]; then\n    echo &quot;Failed to tar&quot;\n    exit 1\nelse\n    echo &quot;Successfully tar&#39;d&quot;\nfi\n</code></pre>\n<p>That does the same thing as the previous snippets, only it&#39;s a little more verbose. You wouldn&#39;t immediately think that you can convert that into a two liner, but you actually can...</p>\n<pre><code class=\"lang-bash\">(mkdir -p /some/test/directory &amp;&gt;/dev/null &amp;&amp; echo &quot;Successfully mkdir&#39;d&quot;) || (echo &quot;Failed to mkdir&quot; &amp;&amp; exit 1)\n(tar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null &amp;&amp; echo &quot;Successfully tar&#39;d&quot;) || (echo &quot;Failed to tar&quot; &amp;&amp; exit 1)\n</code></pre>\n<p>You can group commands using parentheses, then use the <em>&amp;&amp;</em> and <em>||</em> operators.</p>\n<p>One more small example... this is a one liner that ensures the username AND password os set previously in the script, if not, displays whatsup and exits with the proper exit code</p>\n<pre><code class=\"lang-bash\">[[ -z $username || -z $password ]] &amp;&amp; (echo &quot;Username or password null&quot; &amp;&amp; exit 1)\n</code></pre>\n<p>It&#39;s a little more difficult to read, but very useful!</p>\n<hr>\n<h4 id=\"3-brace-expressions\">3) Brace Expressions</h4>\n<p>Utilizing the Brace Expression around a list of worts, allows you to print a list of words with the same prefix and suffix to the words. Here is an example via the CLI of me using the Brace Expression with a suffix:</p>\n<pre><code class=\"lang-bash\">echo {inspi,admi,ado,abju,ac,adhe,inji}red inspired admired adored abjured acred adhered injired\n</code></pre>\n<p>Example with a prefix:</p>\n<pre><code class=\"lang-bash\">echo red{act,an,argue,der,dens,bay} redact redan redargue redder reddens redbay\n</code></pre>\n<p>Now this is a pretty useful trick, but for a while, I just wasn&#39;t sure what to use it for, but I guess you can do something like this...</p>\n<pre><code class=\"lang-bash\">#!/bin/bash\n\n# Get all of the hostnames out of the apache settings output, replace the returns with ,\nhosts=$(/usr/sbin/httpd -S 2&gt;&amp;1 | grep namevhost | awk &#39;{print $4}&#39; | tr &#39;\\n&#39; &#39;,&#39;)\n\n# Compress all apache logs\ntar cvfz apache_logs.tar.gz $(eval echo /var/log/httpd/{$hosts}.log)\n</code></pre>\n<p>That would tar and compress any  of the log files for any active sites into apache_logs.tar.gz <strong> NOTE:</strong> If you are using a variable within the curly braces, like above (The $hosts variable within {}), then you need to use the eval statement.</p>\n<hr>\n<h4 id=\"4-backticks-vs-\">4) Backticks vs $()</h4>\n<p>I was originally taught to use backticks for command substitution, heres a small example:</p>\n<pre><code class=\"lang-bash\">[jhyland@svr2 ~]$ echo &quot;My name is `whoami` and I am in `pwd`&quot;;\n My name is jhyland and I am in /home/jhyland\n</code></pre>\n<p>But if you do enough Bash scripting, you will see an issue... How do you nest commands? Meaning, if you need to execute backticks within backticks, it gets pretty messy. You have to escape every nested backtick, and that would be a pretty ugly script! But if you choose to use <strong>$()</strong> instead of backticks, then it gets much simpler.</p>\n<pre><code class=\"lang-bash\">echo &quot;The file you are looking for is $(find /home/$(whoami)/Downloads/ -name \\&#39;bla-install*.tar.gz)\\&#39;&quot;\n</code></pre>\n<p>See how you can execute the find command in a subshell, as well as the whoami statement, which is inside of a subshell, inside of another subshell? Thats why you should use $() and not ``</p>\n<hr>\n<h4 id=\"5-using-arrays-instead-of-multiple-variables\">5) Using Arrays Instead Of Multiple Variables</h4>\n<p>You don&#39;t have to be a very experienced developer to know that using an array is better than using a ton of variables. Arrays are better for multiple reasons... You can manipulate them in nearly any way. So instead of doing this...</p>\n<pre><code class=\"lang-bash\">#!/bin/bash\ncolor1=&#39;Blue&#39;\ncolor2=&#39;Red&#39;\ncolor3=&#39;Yellow&#39;\ncolor4=&#39;Black&#39;\necho &quot;Colors: $color1, $color2, $color3, $color4.&quot;\n# Output: Colors: Blue, Red, Yellow, Black.\n</code></pre>\n<p>Why not do it the smart way? You can use an array to store the colors. Try this:</p>\n<pre><code class=\"lang-bash\">#!/bin/bash\ncolors=(&#39;Blue&#39; &#39;Red&#39;,&#39;Yellow&#39;,&#39;Black&#39;)\necho &quot;Colors: ${colors[0]}, ${colors[1]}, ${colors[2]}, ${colors[3]}&quot;\n# Output: Colors: Blue, Red, Yellow, Black.\n</code></pre>\n<p>Same output, but less lines of code, and you can add values to it, delete values, reorder it, etc etc. NOTE: The only thing that sucks about arrays in Bash... is the keys have to be numeric. Meaning you cant have ${name[a]} or anything of that sort. The keys are always numeric, never alphabetic.</p>\n<hr>\n<h4 id=\"6-the-test-utility\">6) The &#39;test&#39; Utility</h4>\n<p>Not many people are aware of the test command. Basically, it lets you test a condition, without being in a conditional statement. You just use it to test a condition and it will return an exit code (1 or 0). Here is an example of how you could use it.</p>\n<pre><code class=\"lang-bash\">#!/bin/bash\n\ndir=$(test -d $1)\n\nif [[ $dir -eq &quot;0&quot; ]]\nthen\n the dir exists\nfi\n</code></pre>\n<p>Now I realize you could just put the condition inside of the if statement itself, but the point is that now you can use $dir all over your script, or use it to compare to other test results.</p>\n<hr>\n<h4 id=\"7-default-bash-variable-values\">7) Default Bash Variable Values</h4>\n<p>There are many instances where you want to set a default value for a variable. A lot of people will do something like this:</p>\n<pre><code class=\"lang-bash\">#!/bin/bash\n\nfirst=$1\nlast=$2\n\nif [[ ! $first ]]\nthen\n first=&quot;John&quot;\nfi\n\nif [[ ! $last ]]\nthen\n last=&quot;Doe&quot;\nfi\n\necho &quot;Your name is $first $last&quot;\n</code></pre>\n<p>But theres a much easier way:</p>\n<pre><code class=\"lang-bash\">#!/bin/bash\n\n# Preferred way of setting a default value to a variable\n# (If $1 isn&#39;t null, set value of $first to $1, otherwise,\n# set value of $first to &quot;John&quot;)\nfirst=${1:-John}\n\n# Old school method, whats used in some older bash scripts\n# (if $2 is non-zero, then set $last to value of $2, if\n# $2 is empty, then set $last to &quot;doe&quot;)\n[ -n &quot;$2&quot; ] &amp;&amp; last=$2 || last=&quot;doe&quot;\n\necho &quot;Your name is $first $last&quot;\n</code></pre>\n<p>Using the <strong>${variable:-default value}</strong> method saves you time and space, and is a much easier to utilize variables with default values.</p>\n<hr>\n<h4 id=\"8-align-your-content-make-it-pretty\">8) Align Your Content, Make It Pretty</h4>\n<p>Typically, when you need to align your output to make it pretty, you would use tabs, or printf, but I found a better way to do so, and i&#39;ve used it ever since. The command is called <strong>column</strong>, specifically &quot;<strong>column -t</strong>&quot;. Heres an example of a simple command of me looking at the passwd file. Lets take a look at the output:</p>\n<pre><code class=\"lang-bash\"># egrep &quot;^(geoff|justin|kyle)&quot; /etc/passwd | awk -F: &#39;{print &quot;User&quot;, $1, &quot;Home:&quot;, $6}&#39; User geoff Home: /home/geoff User justin Home: /home/justin User kyle Home: /home/kyle\n</code></pre>\n<p>Pretty basic, just a little ugly huh? Lets try adding <strong>column -t</strong> to the end of it...</p>\n<pre><code class=\"lang-bash\"># egrep &quot;^(geoff|justin|kyle)&quot; /etc/passwd | awk -F: &#39;{print &quot;User&quot;, $1, &quot;Home:&quot;, $6}&#39; | column -t User geoff Home: /home/geoff User justin Home: /home/justin User kyle Home: /home/kyle\n</code></pre>\n<p>You can see that theres a difference in the way the columns are laid out. The <strong>column -t</strong> aligns the columns perfectly. This is useful for the <strong>/bin/mount</strong> and <strong>/bin/df</strong> commands as well, we all know how ugly those are, but if you add <em>column -t</em>, it turns it into something somewhat representable:</p>\n<pre><code class=\"lang-bash\">$ mount | column -t\n/dev/simfs  on  /                         type  simfs\n(rw,relatime,usrquota,grpquota)\nproc        on  /proc                     type  proc         (rw,relatime)\nsysfs       on  /sys                      type  sysfs        (rw,relatime)\nnone        on  /dev                      type  tmpfs        (rw,relatime)\nnone        on  /dev/pts                  type  devpts       (rw,relatime)\nnone        on  /proc/sys/fs/binfmt_misc  type  binfmt_misc  (rw,relatime)\n$ df | column -t\nFilesystem  1K-blocks  Used     Available  Use%  Mounted  on\n/dev/simfs  52428800   6981724  45447076   14%   /\nnone        1048576    4        1048572    1%    /dev\n</code></pre>\n<hr>\n<h4 id=\"9-use-double-brackets-for-conditionals-more-superior-\">9) Use double brackets for conditionals, more &quot;superior&quot;</h4>\n<p>You can code an if statement in bash with either single brackets..</p>\n<pre><code class=\"lang-bash\">if [ $this == \\&#39;that\\&#39; ];\n</code></pre>\n<p>or you can use the double brackets</p>\n<pre><code class=\"lang-bash\">if [[ $this == &#39;that&#39; ]];\n</code></pre>\n<p>Both of these will operate the same way if $this is set to &#39;that&#39;, but if its not set, or its null, then the first one will fail, first one will throw a syntax error in the if statement.</p>\n<p>The double brackets also allow regex matching as well, which can only be accomplished in if statements with single brackets if you execute a subshell and using some form of grep.</p>\n<p>Double brackets are also backwards compatible. So theres nothing extra that needs to be done other than a simple find/replace to replace the single brackets to double.</p>\n<h4 id=\"10-hide-your-grep-result-more-efficiently-with-grep\">10) Hide Your Grep Result More Efficiently With Grep</h4>\n<p>You know how when you grep for something, the actual grep line shows up? Example...</p>\n<pre><code class=\"lang-bash\"># ps aux |grep something\nroot      4155  0.0  0.0  13632   952 pts/2    S+   23:16   0:00 grep --colour=auto something\njdoe  29731  1.0  0.0  20256  1176 pts/0    S+   20:30   1:47 tar cvfz something.tar.gz directory\n</code></pre>\n<p>Typically people just add <em>| grep -v grep</em>, but what if that hides something that you want to see?</p>\n<p>Well heres a little tip, if you surround the first character in brackets, then it will exclude the grep command itself.. Example:</p>\n<pre><code class=\"lang-bash\"># ps aux |grep [s]omething\njdoe  29731  1.0  0.0  20256  1176 pts/0    S+   20:30   1:47 tar cvfz something.tar.gz directory\n</code></pre>\n","mode":"0644","stats":{"dev":16777220,"mode":33188,"nlink":1,"uid":504,"gid":20,"rdev":0,"blksize":4096,"ino":29310077,"size":13926,"blocks":32,"atime":"2016-12-27T09:53:24.000Z","mtime":"2016-12-25T07:58:34.000Z","ctime":"2016-12-25T07:58:34.000Z","birthtime":"2016-12-23T06:01:57.000Z"},"paths":{"root":"","dir":"articles","base":"bash-tips-and-tricks-part-1.md","ext":".md","name":"bash-tips-and-tricks-part-1","href":"/articles/bash-tips-and-tricks-part-1.md","dhref":"/articles/"},"filename":"/Users/jhyland/Documents/Projects/geekwiki/blog/templates/articles/article-page.pug"} -->
+        <!-- Begin Box Page-->
+        <article class="box-page">
+          <!-- Begin Alpha Box-->
+          <div class="box-alpha">
+            <!-- Begin Alpha Tags-->
+            <!-- End Alpha Tags-->
+          </div>
+          <!-- End Alpha Box-->
+          <!-- Begin Beta Box-->
+          <div class="box-beta">
+            <!-- Begin Beta Content-->
+            <div class="box-content">
+              <h2 class="box-title"> Bash Tips And Tricks (Part 1)
+              </h2>
+              <p class="small-title"><span class="subtitle-value"><strong><a href="//github.com/jhyland87" target="_blank" data-steps="[&quot;Object&quot;,&quot;author.format&quot;,&quot;author.firstname&quot;,&quot;author.lastname&quot;,&quot;author.username&quot;,&quot;author.(username|github)&quot;]" data-_author="{&quot;value&quot;:&quot;Justin Hyland (jhyland87)&quot;,&quot;href&quot;:&quot;//github.com/jhyland87&quot;,&quot;authType&quot;:&quot;object&quot;,&quot;json&quot;:&quot;{\&quot;firstname\&quot;:\&quot;Justin\&quot;,\&quot;lastname\&quot;:\&quot;Hyland\&quot;,\&quot;format\&quot;:\&quot;firstname lastname (username)\&quot;,\&quot;username\&quot;:\&quot;jhyland87\&quot;}&quot;,&quot;classes&quot;:[]}" data-author="{&quot;firstname&quot;:&quot;Justin&quot;,&quot;lastname&quot;:&quot;Hyland&quot;,&quot;format&quot;:&quot;firstname lastname (username)&quot;,&quot;username&quot;:&quot;jhyland87&quot;}">Justin Hyland (jhyland87)</a></strong></span></p>
+              <!-- Begin Page Contents--><p>I have always thought of bash as a &quot;Quick &#39;n Dirty&quot; way of taking care of things, it isn&#39;t by any means a powerful language. It&#39;s not meant for writing programs, not meant for creating games, not meant for much other than linux system administration. My &quot;Rule Of Thumb&quot;, is if someone gives me a task to complete, I do it manually, if they come twice or three times, I automate it. If I think it will take more than 100 lines of code, I use something other than bash.... Perl or Python perhaps. I don&#39;t usually use PHP for CLI apps, but sometimes there are exceptions to the rule. Below are a few tricks I have learned while creating some bash scripts.Feel free to add your own in the comments!</p>
+<h4 id="1-getting-the-correct-error-code-of-a-command-thats-before-a-pipe">1) Getting The Correct Error Code Of A Command Thats Before A Pipe</h4>
+<p>A lot of bash scripting consists of executing one thing, and having the output piped ( <strong>|</strong> ) into another command, for example...</p>
+<pre><code class="lang-bash">$ /usr/bin/w | grep jhyland | wc -l
+1
+</code></pre>
+<p>This executes the <em>/usr/bin/w</em> binary, then pipes it to the <em>grep</em> command, which will only return lines that has jhyland in it, then counts the number of lines. So now we know that jhyland is logged into this server only once. Another commonly used tactic is getting the exit code of the last command, which is the $? variable. You can execute a command, then with a conditional statement, see what the exit code was, and process something else accordingly, example below.</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+mkdir /tmp/jhyland
+
+if [[ $? -ne 0 ]]
+then
+ echo &quot;Error while creating /tmp/jhyland&quot;
+ exit 1
+else
+ echo &quot;/tmp/jhyland has been created&quot;
+fi
+</code></pre>
+<p>The $? will either return 0 (success) or 1 (fail). But what about that command I showed you above? The /usr/bin/w | grep jhyland | wc -l, if that gets executed, then $? will show the exit code for the wc -l part, when what you really want, is the exit code for the /usr/bin/w command. The solution is the system variable $PIPESTATUS, (Well, I guess it&#39;s an array). This holds all of the exit codes for every command that was previously ran (Keep in mind, this gets reset every time you run a new command. Heres an example:</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+/usr/bin/w | grep jhyland | wc -l
+
+if [[ ${PIPESTATUS[0]} -ne 0 ]]
+then
+echo &quot;Error while running /usr/bin/w&quot;
+exit 1
+else
+echo &quot;/usr/bin/w ran just fine&quot;
+fi
+</code></pre>
+<p>Here&#39;s a slightly better example of how to leverage it:</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+user=&quot;jhyland&quot;
+ip=&quot;192.168.1&quot;
+
+who | grep $user | grep $ip &amp;&gt;/dev/null
+
+if [[ ${PIPESTATUS[1]} -ne 0 ]]; then
+ echo &quot;No $user on this server&quot;
+elif [[ ${pipestatus[2]} -ne 0 ]]; then
+ echo &quot;The user $user is on this server, just not from an IP matching $ip&quot;
+else
+ echo &quot;The user $user is on this server, from an IP matching $ip&quot;
+fi
+</code></pre>
+<p><a href="/articles/viewing-bash-exit-status-codes-with-pipes.html">Heres a more in-depth tutorial.</a></p>
+<hr>
+<h4 id="2-using-_-_-and-_-_-instead-of-conditional-statements">2) Using <em>&amp;&amp;</em> and <em>||</em> Instead of Conditional Statements</h4>
+<p>Most Bash scripting is comprised of executing commands, then executing more commands based off of the output or result of the previous command.</p>
+<p>If you learn how to use the <em>&amp;&amp;</em> and <em>||</em> operators, you&#39;ll find you can convert a lot of scripts to one-liners, or reduce the amount of lines in some of your existing scripts.</p>
+<p>The <em>||</em> operator is basically &quot;OR&quot;, it&#39;s somewhat like using the <em>-ne</em> operator in a conditional statement.</p>
+<p>Small example... This following script just creates a directory, then backsup (tar&#39;s) a directory and throws the tar into the newly created directory</p>
+<pre><code class="lang-bash">mkdir -p  /some/test/directory &amp;&gt;/dev/null
+if [[ $? -ne 0 ]]; then
+    exit 1
+fi
+
+tar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null
+if [[ $? -ne 0 ]]; then
+    exit 1
+fi
+</code></pre>
+<p>Now this little script can actually be reduced down to two lines of code, using the <em>||</em> operator. Heres the example..</p>
+<pre><code class="lang-bash">mkdir -p /some/test/directory &amp;&gt;/dev/null || exit 1
+tar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null ||  exit 1
+</code></pre>
+<p>Those two snippets do the exact same thing!</p>
+<p>Let&#39;s get a little more complicated. Lets add confirmations into the script.</p>
+<pre><code class="lang-bash">mkdir -p  /some/test/directory &amp;&gt;/dev/null
+if [[ $? -ne 0 ]]; then
+    echo &quot;Failed to mkdir&quot;
+    exit 1
+else
+    echo &quot;Successfully mkdir&#39;d&quot;
+fi
+
+tar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null
+if [[ $? -ne 0 ]]; then
+    echo &quot;Failed to tar&quot;
+    exit 1
+else
+    echo &quot;Successfully tar&#39;d&quot;
+fi
+</code></pre>
+<p>That does the same thing as the previous snippets, only it&#39;s a little more verbose. You wouldn&#39;t immediately think that you can convert that into a two liner, but you actually can...</p>
+<pre><code class="lang-bash">(mkdir -p /some/test/directory &amp;&gt;/dev/null &amp;&amp; echo &quot;Successfully mkdir&#39;d&quot;) || (echo &quot;Failed to mkdir&quot; &amp;&amp; exit 1)
+(tar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null &amp;&amp; echo &quot;Successfully tar&#39;d&quot;) || (echo &quot;Failed to tar&quot; &amp;&amp; exit 1)
+</code></pre>
+<p>You can group commands using parentheses, then use the <em>&amp;&amp;</em> and <em>||</em> operators.</p>
+<p>One more small example... this is a one liner that ensures the username AND password os set previously in the script, if not, displays whatsup and exits with the proper exit code</p>
+<pre><code class="lang-bash">[[ -z $username || -z $password ]] &amp;&amp; (echo &quot;Username or password null&quot; &amp;&amp; exit 1)
+</code></pre>
+<p>It&#39;s a little more difficult to read, but very useful!</p>
+<hr>
+<h4 id="3-brace-expressions">3) Brace Expressions</h4>
+<p>Utilizing the Brace Expression around a list of worts, allows you to print a list of words with the same prefix and suffix to the words. Here is an example via the CLI of me using the Brace Expression with a suffix:</p>
+<pre><code class="lang-bash">echo {inspi,admi,ado,abju,ac,adhe,inji}red inspired admired adored abjured acred adhered injired
+</code></pre>
+<p>Example with a prefix:</p>
+<pre><code class="lang-bash">echo red{act,an,argue,der,dens,bay} redact redan redargue redder reddens redbay
+</code></pre>
+<p>Now this is a pretty useful trick, but for a while, I just wasn&#39;t sure what to use it for, but I guess you can do something like this...</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+# Get all of the hostnames out of the apache settings output, replace the returns with ,
+hosts=$(/usr/sbin/httpd -S 2&gt;&amp;1 | grep namevhost | awk &#39;{print $4}&#39; | tr &#39;\n&#39; &#39;,&#39;)
+
+# Compress all apache logs
+tar cvfz apache_logs.tar.gz $(eval echo /var/log/httpd/{$hosts}.log)
+</code></pre>
+<p>That would tar and compress any  of the log files for any active sites into apache_logs.tar.gz <strong> NOTE:</strong> If you are using a variable within the curly braces, like above (The $hosts variable within {}), then you need to use the eval statement.</p>
+<hr>
+<h4 id="4-backticks-vs-">4) Backticks vs $()</h4>
+<p>I was originally taught to use backticks for command substitution, heres a small example:</p>
+<pre><code class="lang-bash">[jhyland@svr2 ~]$ echo &quot;My name is `whoami` and I am in `pwd`&quot;;
+ My name is jhyland and I am in /home/jhyland
+</code></pre>
+<p>But if you do enough Bash scripting, you will see an issue... How do you nest commands? Meaning, if you need to execute backticks within backticks, it gets pretty messy. You have to escape every nested backtick, and that would be a pretty ugly script! But if you choose to use <strong>$()</strong> instead of backticks, then it gets much simpler.</p>
+<pre><code class="lang-bash">echo &quot;The file you are looking for is $(find /home/$(whoami)/Downloads/ -name \&#39;bla-install*.tar.gz)\&#39;&quot;
+</code></pre>
+<p>See how you can execute the find command in a subshell, as well as the whoami statement, which is inside of a subshell, inside of another subshell? Thats why you should use $() and not ``</p>
+<hr>
+<h4 id="5-using-arrays-instead-of-multiple-variables">5) Using Arrays Instead Of Multiple Variables</h4>
+<p>You don&#39;t have to be a very experienced developer to know that using an array is better than using a ton of variables. Arrays are better for multiple reasons... You can manipulate them in nearly any way. So instead of doing this...</p>
+<pre><code class="lang-bash">#!/bin/bash
+color1=&#39;Blue&#39;
+color2=&#39;Red&#39;
+color3=&#39;Yellow&#39;
+color4=&#39;Black&#39;
+echo &quot;Colors: $color1, $color2, $color3, $color4.&quot;
+# Output: Colors: Blue, Red, Yellow, Black.
+</code></pre>
+<p>Why not do it the smart way? You can use an array to store the colors. Try this:</p>
+<pre><code class="lang-bash">#!/bin/bash
+colors=(&#39;Blue&#39; &#39;Red&#39;,&#39;Yellow&#39;,&#39;Black&#39;)
+echo &quot;Colors: ${colors[0]}, ${colors[1]}, ${colors[2]}, ${colors[3]}&quot;
+# Output: Colors: Blue, Red, Yellow, Black.
+</code></pre>
+<p>Same output, but less lines of code, and you can add values to it, delete values, reorder it, etc etc. NOTE: The only thing that sucks about arrays in Bash... is the keys have to be numeric. Meaning you cant have ${name[a]} or anything of that sort. The keys are always numeric, never alphabetic.</p>
+<hr>
+<h4 id="6-the-test-utility">6) The &#39;test&#39; Utility</h4>
+<p>Not many people are aware of the test command. Basically, it lets you test a condition, without being in a conditional statement. You just use it to test a condition and it will return an exit code (1 or 0). Here is an example of how you could use it.</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+dir=$(test -d $1)
+
+if [[ $dir -eq &quot;0&quot; ]]
+then
+ the dir exists
+fi
+</code></pre>
+<p>Now I realize you could just put the condition inside of the if statement itself, but the point is that now you can use $dir all over your script, or use it to compare to other test results.</p>
+<hr>
+<h4 id="7-default-bash-variable-values">7) Default Bash Variable Values</h4>
+<p>There are many instances where you want to set a default value for a variable. A lot of people will do something like this:</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+first=$1
+last=$2
+
+if [[ ! $first ]]
+then
+ first=&quot;John&quot;
+fi
+
+if [[ ! $last ]]
+then
+ last=&quot;Doe&quot;
+fi
+
+echo &quot;Your name is $first $last&quot;
+</code></pre>
+<p>But theres a much easier way:</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+# Preferred way of setting a default value to a variable
+# (If $1 isn&#39;t null, set value of $first to $1, otherwise,
+# set value of $first to &quot;John&quot;)
+first=${1:-John}
+
+# Old school method, whats used in some older bash scripts
+# (if $2 is non-zero, then set $last to value of $2, if
+# $2 is empty, then set $last to &quot;doe&quot;)
+[ -n &quot;$2&quot; ] &amp;&amp; last=$2 || last=&quot;doe&quot;
+
+echo &quot;Your name is $first $last&quot;
+</code></pre>
+<p>Using the <strong>${variable:-default value}</strong> method saves you time and space, and is a much easier to utilize variables with default values.</p>
+<hr>
+<h4 id="8-align-your-content-make-it-pretty">8) Align Your Content, Make It Pretty</h4>
+<p>Typically, when you need to align your output to make it pretty, you would use tabs, or printf, but I found a better way to do so, and i&#39;ve used it ever since. The command is called <strong>column</strong>, specifically &quot;<strong>column -t</strong>&quot;. Heres an example of a simple command of me looking at the passwd file. Lets take a look at the output:</p>
+<pre><code class="lang-bash"># egrep &quot;^(geoff|justin|kyle)&quot; /etc/passwd | awk -F: &#39;{print &quot;User&quot;, $1, &quot;Home:&quot;, $6}&#39; User geoff Home: /home/geoff User justin Home: /home/justin User kyle Home: /home/kyle
+</code></pre>
+<p>Pretty basic, just a little ugly huh? Lets try adding <strong>column -t</strong> to the end of it...</p>
+<pre><code class="lang-bash"># egrep &quot;^(geoff|justin|kyle)&quot; /etc/passwd | awk -F: &#39;{print &quot;User&quot;, $1, &quot;Home:&quot;, $6}&#39; | column -t User geoff Home: /home/geoff User justin Home: /home/justin User kyle Home: /home/kyle
+</code></pre>
+<p>You can see that theres a difference in the way the columns are laid out. The <strong>column -t</strong> aligns the columns perfectly. This is useful for the <strong>/bin/mount</strong> and <strong>/bin/df</strong> commands as well, we all know how ugly those are, but if you add <em>column -t</em>, it turns it into something somewhat representable:</p>
+<pre><code class="lang-bash">$ mount | column -t
+/dev/simfs  on  /                         type  simfs
+(rw,relatime,usrquota,grpquota)
+proc        on  /proc                     type  proc         (rw,relatime)
+sysfs       on  /sys                      type  sysfs        (rw,relatime)
+none        on  /dev                      type  tmpfs        (rw,relatime)
+none        on  /dev/pts                  type  devpts       (rw,relatime)
+none        on  /proc/sys/fs/binfmt_misc  type  binfmt_misc  (rw,relatime)
+$ df | column -t
+Filesystem  1K-blocks  Used     Available  Use%  Mounted  on
+/dev/simfs  52428800   6981724  45447076   14%   /
+none        1048576    4        1048572    1%    /dev
+</code></pre>
+<hr>
+<h4 id="9-use-double-brackets-for-conditionals-more-superior-">9) Use double brackets for conditionals, more &quot;superior&quot;</h4>
+<p>You can code an if statement in bash with either single brackets..</p>
+<pre><code class="lang-bash">if [ $this == \&#39;that\&#39; ];
+</code></pre>
+<p>or you can use the double brackets</p>
+<pre><code class="lang-bash">if [[ $this == &#39;that&#39; ]];
+</code></pre>
+<p>Both of these will operate the same way if $this is set to &#39;that&#39;, but if its not set, or its null, then the first one will fail, first one will throw a syntax error in the if statement.</p>
+<p>The double brackets also allow regex matching as well, which can only be accomplished in if statements with single brackets if you execute a subshell and using some form of grep.</p>
+<p>Double brackets are also backwards compatible. So theres nothing extra that needs to be done other than a simple find/replace to replace the single brackets to double.</p>
+<h4 id="10-hide-your-grep-result-more-efficiently-with-grep">10) Hide Your Grep Result More Efficiently With Grep</h4>
+<p>You know how when you grep for something, the actual grep line shows up? Example...</p>
+<pre><code class="lang-bash"># ps aux |grep something
+root      4155  0.0  0.0  13632   952 pts/2    S+   23:16   0:00 grep --colour=auto something
+jdoe  29731  1.0  0.0  20256  1176 pts/0    S+   20:30   1:47 tar cvfz something.tar.gz directory
+</code></pre>
+<p>Typically people just add <em>| grep -v grep</em>, but what if that hides something that you want to see?</p>
+<p>Well heres a little tip, if you surround the first character in brackets, then it will exclude the grep command itself.. Example:</p>
+<pre><code class="lang-bash"># ps aux |grep [s]omething
+jdoe  29731  1.0  0.0  20256  1176 pts/0    S+   20:30   1:47 tar cvfz something.tar.gz directory
+</code></pre>
+
+              <!-- End Page Contents--><!-- [include] Begin: partials/share.pug -->
+              <div class="share"><!-- Shared Sites: facebook, twitter, googleplus, pinterest, linkedin, stumbleupon --><span>Share:</span>
+                <!-- Begin Social Networking Share Links-->
+                <ul><!-- Share Icon for Social Network: facebook -->
+                  <li><a class="popupwindow" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3D%7B%7Bhref%7D%7D" data-icon="facebook">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M6.546,15V8.805H4.46V6.39h2.086V4.607c0-2.066,1.263-3.19,3.106-3.19c0.883,0,1.642,0.064,1.863,0.094v2.16 h-1.281c-1,0-1.194,0.476-1.194,1.176v1.54h2.39l-0.31,2.416H9.04V15"></path>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M6.546,15V8.805H4.46V6.39h2.086V4.607c0-2.066,1.263-3.19,3.106-3.19c0.883,0,1.642,0.064,1.863,0.094v2.16 h-1.281c-1,0-1.194,0.476-1.194,1.176v1.54h2.39l-0.31,2.416H9.04V15"></path>
+                                    </svg></a>
+                  </li><!-- Share Icon for Social Network: twitter -->
+                  <li><a class="popupwindow" href="https://twitter.com/home?status=https%3A%2F%2Ftwitter.com%2Fhome%3Fstatus%3D%7B%7Bhref%7D%7D" data-icon="twitter">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.375-1.337.648-2.085.795-.598-.638-1.45-1.036-2.396-1.036-1.812 0-3.282 1.468-3.282 3.28 0 .258.03.51.085.75C5.152 5.39 2.733 4.084 1.114 2.1.83 2.583.67 3.147.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.416-.02-.617-.058.418 1.304 1.63 2.253 3.067 2.28-1.124.88-2.54 1.404-4.077 1.404-.265 0-.526-.015-.783-.045 1.453.93 3.178 1.474 5.032 1.474 6.038 0 9.34-5 9.34-9.338 0-.143-.004-.284-.01-.425.64-.463 1.198-1.04 1.638-1.7z"></path>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.375-1.337.648-2.085.795-.598-.638-1.45-1.036-2.396-1.036-1.812 0-3.282 1.468-3.282 3.28 0 .258.03.51.085.75C5.152 5.39 2.733 4.084 1.114 2.1.83 2.583.67 3.147.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.416-.02-.617-.058.418 1.304 1.63 2.253 3.067 2.28-1.124.88-2.54 1.404-4.077 1.404-.265 0-.526-.015-.783-.045 1.453.93 3.178 1.474 5.032 1.474 6.038 0 9.34-5 9.34-9.338 0-.143-.004-.284-.01-.425.64-.463 1.198-1.04 1.638-1.7z"></path>
+                                    </svg></a>
+                  </li><!-- Share Icon for Social Network: googleplus -->
+                  <li><a class="popupwindow" href="https://plus.google.com/share?url=https%3A%2F%2Fplus.google.com%2Fshare%3Furl%3D%7B%7Bhref%7D%7D" data-icon="googleplus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M5.09 7.273v1.745H7.98c-.116.75-.873 2.197-2.887 2.197-1.737 0-3.155-1.44-3.155-3.215S3.353 4.785 5.09 4.785c.99 0 1.652.422 2.03.786l1.382-1.33c-.887-.83-2.037-1.33-3.41-1.33C2.275 2.91 0 5.184 0 8s2.276 5.09 5.09 5.09c2.94 0 4.888-2.065 4.888-4.974 0-.334-.036-.59-.08-.843H5.09zM16 7.273h-1.455V5.818H13.09v1.455h-1.454v1.454h1.455v1.455h1.455V8.727H16"></path>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M5.09 7.273v1.745H7.98c-.116.75-.873 2.197-2.887 2.197-1.737 0-3.155-1.44-3.155-3.215S3.353 4.785 5.09 4.785c.99 0 1.652.422 2.03.786l1.382-1.33c-.887-.83-2.037-1.33-3.41-1.33C2.275 2.91 0 5.184 0 8s2.276 5.09 5.09 5.09c2.94 0 4.888-2.065 4.888-4.974 0-.334-.036-.59-.08-.843H5.09zM16 7.273h-1.455V5.818H13.09v1.455h-1.454v1.454h1.455v1.455h1.455V8.727H16"></path>
+                                    </svg></a>
+                  </li><!-- Share Icon for Social Network: pinterest -->
+                  <li><a class="popupwindow" href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fpinterest.com%2Fpin%2Fcreate%2Fbutton%2F%3Furl%3D%7B%7Bhref%7D%7D%26media%3D%7B%7Bhref%7D%7D%26description%3D%7B%7Bsummary%7D%7D&amp;media=https%3A%2F%2Fpinterest.com%2Fpin%2Fcreate%2Fbutton%2F%3Furl%3D%7B%7Bhref%7D%7D%26media%3D%7B%7Bhref%7D%7D%26description%3D%7B%7Bsummary%7D%7D&amp;description={{summary}}" data-icon="pinterest">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M8 0C3.582 0 0 3.582 0 8c0 3.39 2.108 6.285 5.084 7.45-.07-.633-.133-1.604.028-2.295.146-.625.938-3.977.938-3.977s-.24-.48-.24-1.188c0-1.11.646-1.943 1.448-1.943.683 0 1.012.513 1.012 1.127 0 .687-.436 1.713-.662 2.664-.19.797.4 1.445 1.185 1.445 1.42 0 2.514-1.498 2.514-3.662 0-1.915-1.376-3.254-3.342-3.254-2.276 0-3.61 1.707-3.61 3.472 0 .687.263 1.424.593 1.825.066.08.075.15.057.23-.06.252-.196.796-.223.907-.035.146-.115.178-.268.107-.998-.465-1.624-1.926-1.624-3.1 0-2.524 1.834-4.84 5.287-4.84 2.774 0 4.932 1.977 4.932 4.62 0 2.757-1.74 4.977-4.153 4.977-.81 0-1.572-.422-1.833-.92l-.5 1.902c-.18.695-.667 1.566-.994 2.097.75.232 1.545.357 2.37.357 4.417 0 8-3.582 8-8s-3.583-8-8-8z"></path>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M8 0C3.582 0 0 3.582 0 8c0 3.39 2.108 6.285 5.084 7.45-.07-.633-.133-1.604.028-2.295.146-.625.938-3.977.938-3.977s-.24-.48-.24-1.188c0-1.11.646-1.943 1.448-1.943.683 0 1.012.513 1.012 1.127 0 .687-.436 1.713-.662 2.664-.19.797.4 1.445 1.185 1.445 1.42 0 2.514-1.498 2.514-3.662 0-1.915-1.376-3.254-3.342-3.254-2.276 0-3.61 1.707-3.61 3.472 0 .687.263 1.424.593 1.825.066.08.075.15.057.23-.06.252-.196.796-.223.907-.035.146-.115.178-.268.107-.998-.465-1.624-1.926-1.624-3.1 0-2.524 1.834-4.84 5.287-4.84 2.774 0 4.932 1.977 4.932 4.62 0 2.757-1.74 4.977-4.153 4.977-.81 0-1.572-.422-1.833-.92l-.5 1.902c-.18.695-.667 1.566-.994 2.097.75.232 1.545.357 2.37.357 4.417 0 8-3.582 8-8s-3.583-8-8-8z"></path>
+                                    </svg></a>
+                  </li><!-- Share Icon for Social Network: linkedin -->
+                  <li><a class="popupwindow" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.linkedin.com%2FshareArticle%3Fmini%3Dtrue%26url%3D%7B%7Bhref%7D%7D%26title%3D%7B%7Btitle%7D%7D%26summary%3D%7B%7Bsummary%7D%7D%26source%3D%7B%7Bhref%7D%7D&amp;title=LinkedIn&amp;summary={{summary}}&amp;source=https%3A%2F%2Fwww.linkedin.com%2FshareArticle%3Fmini%3Dtrue%26url%3D%7B%7Bhref%7D%7D%26title%3D%7B%7Btitle%7D%7D%26summary%3D%7B%7Bsummary%7D%7D%26source%3D%7B%7Bhref%7D%7D" data-icon="linkedin">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51V7.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z"></path>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51V7.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z"></path>
+                                    </svg></a>
+                  </li><!-- Share Icon for Social Network: stumbleupon -->
+                  <li><a class="popupwindow" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.stumbleupon.com%2Fsubmit%3Furl%3D%7B%7Bhref%7D%7D%26title%3D%7B%7Btitle%7D%7D&amp;title=StumbleUpon" data-icon="stumbleupon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M8 0C3.58 0 0 3.582 0 8c0 4.42 3.58 8 8 8s8-3.58 8-8c0-4.418-3.58-8-8-8zm-.412 5.938v3.3c0 1.236-1.128 2.167-2.3 2.167-1.096 0-2.12-.518-2.236-1.756V7.587h1.65v1.65c0 .41.29.477.585.477.293 0 .65-.066.65-.478v-3.3c.034-1.236 1.053-2.01 2.194-2.01 1.162 0 1.932.878 1.932 2.01v.696l-.818.39-.832-.39V5.526s-.11-.12-.28-.12c-.283 0-.544.12-.544.532zm5.36 3.3c0 1.236-1.06 2.074-2.235 2.074-1.174 0-2.3-.838-2.3-2.075v-1.65h1.65v1.65c0 .412.357.478.65.478.294 0 .586-.066.586-.478v-1.65h1.648v1.65z"></path>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+                                      <path fill="#FFFFFF" d="M8 0C3.58 0 0 3.582 0 8c0 4.42 3.58 8 8 8s8-3.58 8-8c0-4.418-3.58-8-8-8zm-.412 5.938v3.3c0 1.236-1.128 2.167-2.3 2.167-1.096 0-2.12-.518-2.236-1.756V7.587h1.65v1.65c0 .41.29.477.585.477.293 0 .65-.066.65-.478v-3.3c.034-1.236 1.053-2.01 2.194-2.01 1.162 0 1.932.878 1.932 2.01v.696l-.818.39-.832-.39V5.526s-.11-.12-.28-.12c-.283 0-.544.12-.544.532zm5.36 3.3c0 1.236-1.06 2.074-2.235 2.074-1.174 0-2.3-.838-2.3-2.075v-1.65h1.65v1.65c0 .412.357.478.65.478.294 0 .586-.066.586-.478v-1.65h1.648v1.65z"></path>
+                                    </svg></a>
+                  </li>
+                </ul>
+                <!-- End Social Networking Share Links-->
+              </div><!-- [include] End: partials/share.pug -->
+            </div>
+            <!-- End Beta Content-->
+            <!-- Begin Beta Tags-->
+            <!-- End Beta Tags-->
+          </div>
+          <!-- End Beta Box-->
+        </article>
+        <!-- End Box Page-->
+      </div>
+      <!-- End Body Content-->
+      <!-- // .container-->
+      <footer id="footer">
+        <!-- Begin Footer-->
+        <div class="container">
+          <div class="end-note">
+            <div class="align-left">
+              <p> <strong>© GeekWiki.io</strong><em>2016</em></p>
+            </div>
+            <div class="align-right">
+              <div class="share featured">
+                <ul>
+                  <li><a data-icon="facebook" href="#"></a></li>
+                  <li><a data-icon="twitter" href="#"></a></li>
+                  <li><a data-icon="youtube" href="#"></a></li>
+                </ul>
+              </div>
+              <!-- // .share-->
+            </div><a class="back" href="#wrapper" title="Back to top"></a>
+          </div>
+          <!-- // .end-note-->
+        </div>
+        <!-- // .container-->
+        <!-- End Footer-->
+      </footer>
+    </div>
+    <!-- // #wrapper-->
+    <!-- Begin JS-->
+    <script src="/assets/components/jquery/jquery.min.js"></script>
+    <script src="/assets/js/app.min.js"></script>
+    <script src="/assets/js/jquery.popupwindow.js"></script>
+    <script src="/assets/js/custom.js"></script>
+    <script>new Live;</script>
+    <!-- End JS-->
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<p><a href="http://linux.die.net/man/1/du" title="Man page for command &#39;du&#39;">du</a> and <a href="http://linux.die.net/man/1/df" title="Man page for command &#39;df&#39;">df</a> are both basic Linux commands that come pre-installed on every flavor of Linux (to the best of my knowledge).</p>
+<p>Snippet from the man page for <a href="http://linux.die.net/man/1/du" title="Man page for command &#39;du&#39;">du</a>...</p>
+<blockquote>
+<p>NAME
+    du -- display disk usage statistics</p>
+<p>DESCRIPTION
+    The du utility displays the file system block usage for each file argument and for each directory in the file hierarchy rooted in each directory argument.  If no file is speci-
+    fied, the block usage of the hierarchy rooted in the current directory is displayed.</blockquote></p>
+</blockquote>
+<p>And then for <a href="http://linux.die.net/man/1/df" title="Man page for command &#39;df&#39;">df</a>...</p>
+<blockquote>
+<p>NAME
+    df -- display free disk space</p>
+<p>DESCRIPTION
+    The df utility displays statistics about the amount of free disk space on the specified filesystem or on the filesystem of which file is a part.  Values are displayed in
+    512-byte per block counts.  If neither a file or a filesystem operand is specified, statistics for all mounted filesystems are displayed (subject to the -t option below).</p>
+</blockquote>
+<p>These commands are used pretty much every day, either by a SysAdmin troubleshooting an issue or setting up an application, or scripts that need to know the available or used disk space.</p>
+<p>...But have you ever noticed that sometimes (... every time) they show results are different?</p>
+<p>Typically (Not always, but usually), the size reported by <em>df</em> will be more than whats reported by <em>du</em>, but it&#39;s very rare that they both report the same disk usage. Actually, personally... I have never seen them report the same size, and I&#39;ve managed more Linux servers than I can even begin to count. Both of the commands use a different &quot;ruler&quot; per say when they determine the size of said folder/mount. So depending on what you&#39;re trying to get exactly, they can both be correct.</p>
+<p><strong>NOTE:</strong> In the output of any of my examples of <em>du</em>, I use the <em>-s</em> flag to display the <em>summary</em> of said directory, as opposed to outputting a tree-like display of the contents of the directory, and then the size of each of the files/folders. Then the <em>-h</em> flag will display the space in human-readable format (for both <em>du</em> and <em>df</em>).</p>
+<p>There are a few reasons behind this, so lets go over it in some detail....=</p>
+<hr>
+<h4 id="reason-1">Reason # 1</h4>
+<p>Files in memory will be included in the output of <em>df</em>. <em>du</em> doesn&#39;t account for the files in memory, just the files that are actually on disk.</p>
+<hr>
+<h4 id="reason-2">Reason # 2</h4>
+<p>The command <em>df</em> will include the size of deleted files with open file descriptors. So hypothetically, if you were to have a large file (Lets say... a 4GB log file... because someone didnt enable logrotate), and you open that file, then someone steps on your toes and accidentally deletes that same 4GB log file (Or right then, it finally gets rotated), <em>df</em> will still include the size of the file as if it was still there, thus, reporting an improper folder/mount point size.</p>
+<p><strong>NOTE:</strong> You can use the <a href="http://linux.die.net/man/8/lsof" title="LSOF man page">lsof</a> command to help find file descriptors to deleted files. The exact command is <em>lsof +L1</em></p>
+<hr>
+<h4 id="reason-3">Reason #3</h4>
+<p>The command <em>df</em>, for the most part, get most of its info from the file systems primary superblock, so it&#39;s almost as if the results were cached, and you&#39;re pulling it from the cache. As opposed to <em>du</em>, which gathers the information for the output at the time you execute the command. You can tell this by how long it takes for the commands to execute. I&#39;ll execute both a <em>du</em> and <em>df</em> on the same machine, with the same mounts, and wrap it in a <em>time</em> command...</p>
+<pre><code class="lang-bash">$ time df -h /mnt/media/
+Filesystem             Size  Used Avail Use% Mounted on
+//192.168.1.140/Media  5.4T  2.4T  3.1T  44% /mnt/media
+
+real    0m0.020s
+user    0m0.010s
+sys    0m0.000s
+
+$ time du -sh /mnt/media/
+1.6T    /mnt/media/
+
+real    0m6.861s
+user    0m0.270s
+sys    0m0.800s
+</code></pre>
+<p>Not only is the usage almost a full TB off in the disk usage, but there was a difference of about 6 seconds! You can test this yourself by copying or moving data, then using the <a href="http://linux.die.net/man/1/watch">watch command</a> in two different terminals and watch the differences in the sizes. The results from <em>df</em> will update much faster, but the results wont change every time it executes.</p>
+<hr>
+<h4 id="summary">Summary</h4>
+<p>Unless you&#39;re doing something like writing a script to interact with the NFS directly or something similar like that, I wouldn&#39;t really trust the output of <em>df</em>. I think of df as somewhat of a guesstimation or a ballpark figure of the partition sizes. The only real upside of it is the fact it executes nearly immediately. The <em>du</em> command is much more reliable and accurate. So if you can spare the time it takes to execute the command, I would suggest using <em>du</em> any day.</p>
+<p><strong>Why is this information useful?</strong> Sometimes (many times in my personal experience), you will execute something like an install script or something that will use one or the other to check for free disk space before it continues. I can remember more than a few times I had to use <em>lsof</em> to check for open file descriptors because a script was erroring out. </p>
