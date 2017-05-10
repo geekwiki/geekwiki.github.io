@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">How to install a LAMP (Linux, Apache, MySQL, PHP) stack on CentOS/RHEL</h2>
+          <p class="small-title"><span>April 18, 2013</span></p>
+
+          <h3 id="what-is-a-lamp-stack-">What is a LAMP Stack?</h3>
+<p>A LAMP stack is a group of software that you install on a server to serve your own websites. Much like how this blog is being served to you, I purchased a VPS and then made a LAMP stack out of the server. LAMP stands for Linux, Apache, MySQL and PHP. Typically the Linux part is already taken care of for you when you purchase a new VPS or dedicated server from a hosting provider so we&#39;ll skip the Linux portion (I&#39;ll write up an article later on how install Linux). So with that being said, you should have a Linux server up and running and you should be able to log in as root (or use sudo) to install and configure the rest of the stack.</p>
+<p>You will require root privileges to install the stack, if you don&#39;t have this then you will not be able to complete this.</p>
+<h2 id="lamp-installation">LAMP Installation</h2>
+<p>With all of the above said, it&#39;s now time to install the required components.</p>
+<h3 id="-step-1-install-apache">* Step 1: Install Apache</h3>
+<p>To install Apache, simply type the following in a open terminal /shell</p>
+<pre><code class="lang-bash">$ sudo yum -y install httpd
+</code></pre>
+<p>Once the install finishes you then will want to start the process which there are two ways of doing it.. I&#39;ll provide both commands, but both of them do the exact same thing just in a different manner.</p>
+<pre><code class="lang-bash">$ sudo service httpd start
+</code></pre>
+<p>or</p>
+<pre><code class="lang-bash">$ /etc/init.d/httpd start
+</code></pre>
+<p>Once you have done the above, you then can verify that apache has installed correctly and it is running by opening up a web browser and navigating to your server&#39;s IP address such as <a href="http://192.168.1.1">http://192.168.1.1</a> and it should display the apache test page which looks like this:</p>
+<p><img src="/assets/articles/apache-test-page.jpg" alt="apache-test-page"></p>
+<p>If you want apache to automatically start when you reboot your server just simply chkconfig it to on like so:</p>
+<pre><code class="lang-bash">$ sudo chkconfig httpd on
+</code></pre>
+<h3 id="-step-2-install-mysql">* Step 2: Install MySQL</h3>
+<p>To install MySQL, simply type the following in a open terminal / shell</p>
+<pre><code class="lang-bash">$ sudo yum -y install mysql-server
+</code></pre>
+<p>Please note, when MySQL is installing it will ask you two questions, just simply type yes for both of them and MySQL will complete it&#39;s installation.</p>
+<p>Once the install finishes you then will want to start the MySQL process by issuing the following command, and much like apache there are two ways of doing it and I&#39;ll show you both.</p>
+<pre><code class="lang-bash">$ sudo service mysqld start
+</code></pre>
+<p>or</p>
+<pre><code class="lang-bash">$ sudo /etc/init.d/mysqld start
+</code></pre>
+<p>Once you have started the MySQL server you should then set a MySQL root password and run the mysql_secure_installation to set credentials and security for your MySQL instance, to start the setup simply run the following command:</p>
+<pre><code class="lang-bash">$ sudo /usr/bin/mysql_secure_installation
+</code></pre>
+<p>By default the root password for MySQL is blank so when prompts you for a password, just hit enter. After you hit enter, it will ask you if you want to set a root password to which you will want to type Y and follow the instructions.</p>
+<p>The actual setup of MySQL is pretty much automatic, it only asks you a few questions and then does the rest of the configuration. You simply need to answer yes or no to a few questions and you&#39;ll be good to go for MySQL. Typically for a easy installation, you just say yes to all the options. The options will look like this:</p>
+<pre><code class="lang-bash">By default, a MySQL installation has an anonymous user, allowing anyone
+to log into MySQL without having to have a user account created for
+them. This is intended only for testing, and to make the installation
+go a bit smoother. You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] y
+ ... Success!
+
+Normally, root should only be allowed to connect from &#39;localhost&#39;. This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y
+... Success!
+
+By default, MySQL comes with a database named &#39;test&#39; that anyone can
+access. This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y
+ ... Success!
+
+Cleaning up...
+
+All done! If you\&#39;ve completed all of the above steps, your MySQL
+installation should now be secure.
+
+Thanks for using MySQL!
+</code></pre>
+<p>If you want MySQL to automatically start when you reboot your server just simply chkconfig it to on like so:</p>
+<pre><code class="lang-bash">$ sudo chkconfig mysqld on
+</code></pre>
+<h3 id="-step-3-install-php">* Step 3: Install PHP</h3>
+<p>To install PHP, simply type the following in a open terminal /shell</p>
+<pre><code class="lang-bash">$ sudo yum -y install php php-mysql
+</code></pre>
+<p>Once the install finishes you have successfully installed PHP and the PHP-MySQL plugin. You now will want to restart apache, so apache then will be able to use php that you just installed and you can then create php pages. Simply restart apache by issuing the following command:</p>
+<pre><code class="lang-bash">$ sudo /etc/init.d/httpd restart
+</code></pre>
+<p>And you&#39;re done! You now have a complete LAMP stack. See my future posts on good ways to setup your vhost structure to serve multiple domains on one IP and more. Let me know if you have any questions or run into any snags!</p>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">Bash Tips And Tricks (Part 1)</h2>
+          <p class="small-title"><span>February 11, 2014</span></p>
+
+          <p>I have always thought of bash as a &quot;Quick &#39;n Dirty&quot; way of taking care of things, it isn&#39;t by any means a powerful language. It&#39;s not meant for writing programs, not meant for creating games, not meant for much other than linux system administration. My &quot;Rule Of Thumb&quot;, is if someone gives me a task to complete, I do it manually, if they come twice or three times, I automate it. If I think it will take more than 100 lines of code, I use something other than bash.... Perl or Python perhaps. I don&#39;t usually use PHP for CLI apps, but sometimes there are exceptions to the rule. Below are a few tricks I have learned while creating some bash scripts.Feel free to add your own in the comments!</p>
+<h4 id="1-getting-the-correct-error-code-of-a-command-thats-before-a-pipe">1) Getting The Correct Error Code Of A Command Thats Before A Pipe</h4>
+<p>A lot of bash scripting consists of executing one thing, and having the output piped ( <strong>|</strong> ) into another command, for example...</p>
+<pre><code class="lang-bash">$ /usr/bin/w | grep jhyland | wc -l
+1
+</code></pre>
+<p>This executes the <em>/usr/bin/w</em> binary, then pipes it to the <em>grep</em> command, which will only return lines that has jhyland in it, then counts the number of lines. So now we know that jhyland is logged into this server only once. Another commonly used tactic is getting the exit code of the last command, which is the $? variable. You can execute a command, then with a conditional statement, see what the exit code was, and process something else accordingly, example below.</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+mkdir /tmp/jhyland
+
+if [[ $? -ne 0 ]]
+then
+ echo &quot;Error while creating /tmp/jhyland&quot;
+ exit 1
+else
+ echo &quot;/tmp/jhyland has been created&quot;
+fi
+</code></pre>
+<p>The $? will either return 0 (success) or 1 (fail). But what about that command I showed you above? The /usr/bin/w | grep jhyland | wc -l, if that gets executed, then $? will show the exit code for the wc -l part, when what you really want, is the exit code for the /usr/bin/w command. The solution is the system variable $PIPESTATUS, (Well, I guess it&#39;s an array). This holds all of the exit codes for every command that was previously ran (Keep in mind, this gets reset every time you run a new command. Heres an example:</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+/usr/bin/w | grep jhyland | wc -l
+
+if [[ ${PIPESTATUS[0]} -ne 0 ]]
+then
+echo &quot;Error while running /usr/bin/w&quot;
+exit 1
+else
+echo &quot;/usr/bin/w ran just fine&quot;
+fi
+</code></pre>
+<p>Here&#39;s a slightly better example of how to leverage it:</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+user=&quot;jhyland&quot;
+ip=&quot;192.168.1&quot;
+
+who | grep $user | grep $ip &amp;&gt;/dev/null
+
+if [[ ${PIPESTATUS[1]} -ne 0 ]]; then
+ echo &quot;No $user on this server&quot;
+elif [[ ${pipestatus[2]} -ne 0 ]]; then
+ echo &quot;The user $user is on this server, just not from an IP matching $ip&quot;
+else
+ echo &quot;The user $user is on this server, from an IP matching $ip&quot;
+fi
+</code></pre>
+<p><a href="/articles/viewing-bash-exit-status-codes-with-pipes.html">Heres a more in-depth tutorial.</a></p>
+<hr>
+<h4 id="2-using-_-_-and-_-_-instead-of-conditional-statements">2) Using <em>&amp;&amp;</em> and <em>||</em> Instead of Conditional Statements</h4>
+<p>Most Bash scripting is comprised of executing commands, then executing more commands based off of the output or result of the previous command.</p>
+<p>If you learn how to use the <em>&amp;&amp;</em> and <em>||</em> operators, you&#39;ll find you can convert a lot of scripts to one-liners, or reduce the amount of lines in some of your existing scripts.</p>
+<p>The <em>||</em> operator is basically &quot;OR&quot;, it&#39;s somewhat like using the <em>-ne</em> operator in a conditional statement.</p>
+<p>Small example... This following script just creates a directory, then backsup (tar&#39;s) a directory and throws the tar into the newly created directory</p>
+<pre><code class="lang-bash">mkdir -p  /some/test/directory &amp;&gt;/dev/null
+if [[ $? -ne 0 ]]; then
+    exit 1
+fi
+
+tar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null
+if [[ $? -ne 0 ]]; then
+    exit 1
+fi
+</code></pre>
+<p>Now this little script can actually be reduced down to two lines of code, using the <em>||</em> operator. Heres the example..</p>
+<pre><code class="lang-bash">mkdir -p /some/test/directory &amp;&gt;/dev/null || exit 1
+tar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null ||  exit 1
+</code></pre>
+<p>Those two snippets do the exact same thing!</p>
+<p>Let&#39;s get a little more complicated. Lets add confirmations into the script.</p>
+<pre><code class="lang-bash">mkdir -p  /some/test/directory &amp;&gt;/dev/null
+if [[ $? -ne 0 ]]; then
+    echo &quot;Failed to mkdir&quot;
+    exit 1
+else
+    echo &quot;Successfully mkdir&#39;d&quot;
+fi
+
+tar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null
+if [[ $? -ne 0 ]]; then
+    echo &quot;Failed to tar&quot;
+    exit 1
+else
+    echo &quot;Successfully tar&#39;d&quot;
+fi
+</code></pre>
+<p>That does the same thing as the previous snippets, only it&#39;s a little more verbose. You wouldn&#39;t immediately think that you can convert that into a two liner, but you actually can...</p>
+<pre><code class="lang-bash">(mkdir -p /some/test/directory &amp;&gt;/dev/null &amp;&amp; echo &quot;Successfully mkdir&#39;d&quot;) || (echo &quot;Failed to mkdir&quot; &amp;&amp; exit 1)
+(tar cvfz /some/test/directory/backup_file.tar.gz /tmp &amp;&gt;/dev/null &amp;&amp; echo &quot;Successfully tar&#39;d&quot;) || (echo &quot;Failed to tar&quot; &amp;&amp; exit 1)
+</code></pre>
+<p>You can group commands using parentheses, then use the <em>&amp;&amp;</em> and <em>||</em> operators.</p>
+<p>One more small example... this is a one liner that ensures the username AND password os set previously in the script, if not, displays whatsup and exits with the proper exit code</p>
+<pre><code class="lang-bash">[[ -z $username || -z $password ]] &amp;&amp; (echo &quot;Username or password null&quot; &amp;&amp; exit 1)
+</code></pre>
+<p>It&#39;s a little more difficult to read, but very useful!</p>
+<hr>
+<h4 id="3-brace-expressions">3) Brace Expressions</h4>
+<p>Utilizing the Brace Expression around a list of worts, allows you to print a list of words with the same prefix and suffix to the words. Here is an example via the CLI of me using the Brace Expression with a suffix:</p>
+<pre><code class="lang-bash">echo {inspi,admi,ado,abju,ac,adhe,inji}red inspired admired adored abjured acred adhered injired
+</code></pre>
+<p>Example with a prefix:</p>
+<pre><code class="lang-bash">echo red{act,an,argue,der,dens,bay} redact redan redargue redder reddens redbay
+</code></pre>
+<p>Now this is a pretty useful trick, but for a while, I just wasn&#39;t sure what to use it for, but I guess you can do something like this...</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+# Get all of the hostnames out of the apache settings output, replace the returns with ,
+hosts=$(/usr/sbin/httpd -S 2&gt;&amp;1 | grep namevhost | awk &#39;{print $4}&#39; | tr &#39;\n&#39; &#39;,&#39;)
+
+# Compress all apache logs
+tar cvfz apache_logs.tar.gz $(eval echo /var/log/httpd/{$hosts}.log)
+</code></pre>
+<p>That would tar and compress any  of the log files for any active sites into apache_logs.tar.gz <strong> NOTE:</strong> If you are using a variable within the curly braces, like above (The $hosts variable within {}), then you need to use the eval statement.</p>
+<hr>
+<h4 id="4-backticks-vs-">4) Backticks vs $()</h4>
+<p>I was originally taught to use backticks for command substitution, heres a small example:</p>
+<pre><code class="lang-bash">[jhyland@svr2 ~]$ echo &quot;My name is `whoami` and I am in `pwd`&quot;;
+ My name is jhyland and I am in /home/jhyland
+</code></pre>
+<p>But if you do enough Bash scripting, you will see an issue... How do you nest commands? Meaning, if you need to execute backticks within backticks, it gets pretty messy. You have to escape every nested backtick, and that would be a pretty ugly script! But if you choose to use <strong>$()</strong> instead of backticks, then it gets much simpler.</p>
+<pre><code class="lang-bash">echo &quot;The file you are looking for is $(find /home/$(whoami)/Downloads/ -name \&#39;bla-install*.tar.gz)\&#39;&quot;
+</code></pre>
+<p>See how you can execute the find command in a subshell, as well as the whoami statement, which is inside of a subshell, inside of another subshell? Thats why you should use $() and not ``</p>
+<hr>
+<h4 id="5-using-arrays-instead-of-multiple-variables">5) Using Arrays Instead Of Multiple Variables</h4>
+<p>You don&#39;t have to be a very experienced developer to know that using an array is better than using a ton of variables. Arrays are better for multiple reasons... You can manipulate them in nearly any way. So instead of doing this...</p>
+<pre><code class="lang-bash">#!/bin/bash
+color1=&#39;Blue&#39;
+color2=&#39;Red&#39;
+color3=&#39;Yellow&#39;
+color4=&#39;Black&#39;
+echo &quot;Colors: $color1, $color2, $color3, $color4.&quot;
+# Output: Colors: Blue, Red, Yellow, Black.
+</code></pre>
+<p>Why not do it the smart way? You can use an array to store the colors. Try this:</p>
+<pre><code class="lang-bash">#!/bin/bash
+colors=(&#39;Blue&#39; &#39;Red&#39;,&#39;Yellow&#39;,&#39;Black&#39;)
+echo &quot;Colors: ${colors[0]}, ${colors[1]}, ${colors[2]}, ${colors[3]}&quot;
+# Output: Colors: Blue, Red, Yellow, Black.
+</code></pre>
+<p>Same output, but less lines of code, and you can add values to it, delete values, reorder it, etc etc. NOTE: The only thing that sucks about arrays in Bash... is the keys have to be numeric. Meaning you cant have ${name[a]} or anything of that sort. The keys are always numeric, never alphabetic.</p>
+<hr>
+<h4 id="6-the-test-utility">6) The &#39;test&#39; Utility</h4>
+<p>Not many people are aware of the test command. Basically, it lets you test a condition, without being in a conditional statement. You just use it to test a condition and it will return an exit code (1 or 0). Here is an example of how you could use it.</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+dir=$(test -d $1)
+
+if [[ $dir -eq &quot;0&quot; ]]
+then
+ the dir exists
+fi
+</code></pre>
+<p>Now I realize you could just put the condition inside of the if statement itself, but the point is that now you can use $dir all over your script, or use it to compare to other test results.</p>
+<hr>
+<h4 id="7-default-bash-variable-values">7) Default Bash Variable Values</h4>
+<p>There are many instances where you want to set a default value for a variable. A lot of people will do something like this:</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+first=$1
+last=$2
+
+if [[ ! $first ]]
+then
+ first=&quot;John&quot;
+fi
+
+if [[ ! $last ]]
+then
+ last=&quot;Doe&quot;
+fi
+
+echo &quot;Your name is $first $last&quot;
+</code></pre>
+<p>But theres a much easier way:</p>
+<pre><code class="lang-bash">#!/bin/bash
+
+# Preferred way of setting a default value to a variable
+# (If $1 isn&#39;t null, set value of $first to $1, otherwise,
+# set value of $first to &quot;John&quot;)
+first=${1:-John}
+
+# Old school method, whats used in some older bash scripts
+# (if $2 is non-zero, then set $last to value of $2, if
+# $2 is empty, then set $last to &quot;doe&quot;)
+[ -n &quot;$2&quot; ] &amp;&amp; last=$2 || last=&quot;doe&quot;
+
+echo &quot;Your name is $first $last&quot;
+</code></pre>
+<p>Using the <strong>${variable:-default value}</strong> method saves you time and space, and is a much easier to utilize variables with default values.</p>
+<hr>
+<h4 id="8-align-your-content-make-it-pretty">8) Align Your Content, Make It Pretty</h4>
+<p>Typically, when you need to align your output to make it pretty, you would use tabs, or printf, but I found a better way to do so, and i&#39;ve used it ever since. The command is called <strong>column</strong>, specifically &quot;<strong>column -t</strong>&quot;. Heres an example of a simple command of me looking at the passwd file. Lets take a look at the output:</p>
+<pre><code class="lang-bash"># egrep &quot;^(geoff|justin|kyle)&quot; /etc/passwd | awk -F: &#39;{print &quot;User&quot;, $1, &quot;Home:&quot;, $6}&#39; User geoff Home: /home/geoff User justin Home: /home/justin User kyle Home: /home/kyle
+</code></pre>
+<p>Pretty basic, just a little ugly huh? Lets try adding <strong>column -t</strong> to the end of it...</p>
+<pre><code class="lang-bash"># egrep &quot;^(geoff|justin|kyle)&quot; /etc/passwd | awk -F: &#39;{print &quot;User&quot;, $1, &quot;Home:&quot;, $6}&#39; | column -t User geoff Home: /home/geoff User justin Home: /home/justin User kyle Home: /home/kyle
+</code></pre>
+<p>You can see that theres a difference in the way the columns are laid out. The <strong>column -t</strong> aligns the columns perfectly. This is useful for the <strong>/bin/mount</strong> and <strong>/bin/df</strong> commands as well, we all know how ugly those are, but if you add <em>column -t</em>, it turns it into something somewhat representable:</p>
+<pre><code class="lang-bash">$ mount | column -t
+/dev/simfs  on  /                         type  simfs
+(rw,relatime,usrquota,grpquota)
+proc        on  /proc                     type  proc         (rw,relatime)
+sysfs       on  /sys                      type  sysfs        (rw,relatime)
+none        on  /dev                      type  tmpfs        (rw,relatime)
+none        on  /dev/pts                  type  devpts       (rw,relatime)
+none        on  /proc/sys/fs/binfmt_misc  type  binfmt_misc  (rw,relatime)
+$ df | column -t
+Filesystem  1K-blocks  Used     Available  Use%  Mounted  on
+/dev/simfs  52428800   6981724  45447076   14%   /
+none        1048576    4        1048572    1%    /dev
+</code></pre>
+<hr>
+<h4 id="9-use-double-brackets-for-conditionals-more-superior-">9) Use double brackets for conditionals, more &quot;superior&quot;</h4>
+<p>You can code an if statement in bash with either single brackets..</p>
+<pre><code class="lang-bash">if [ $this == \&#39;that\&#39; ];
+</code></pre>
+<p>or you can use the double brackets</p>
+<pre><code class="lang-bash">if [[ $this == &#39;that&#39; ]];
+</code></pre>
+<p>Both of these will operate the same way if $this is set to &#39;that&#39;, but if its not set, or its null, then the first one will fail, first one will throw a syntax error in the if statement.</p>
+<p>The double brackets also allow regex matching as well, which can only be accomplished in if statements with single brackets if you execute a subshell and using some form of grep.</p>
+<p>Double brackets are also backwards compatible. So theres nothing extra that needs to be done other than a simple find/replace to replace the single brackets to double.</p>
+<h4 id="10-hide-your-grep-result-more-efficiently-with-grep">10) Hide Your Grep Result More Efficiently With Grep</h4>
+<p>You know how when you grep for something, the actual grep line shows up? Example...</p>
+<pre><code class="lang-bash"># ps aux |grep something
+root      4155  0.0  0.0  13632   952 pts/2    S+   23:16   0:00 grep --colour=auto something
+jdoe  29731  1.0  0.0  20256  1176 pts/0    S+   20:30   1:47 tar cvfz something.tar.gz directory
+</code></pre>
+<p>Typically people just add <em>| grep -v grep</em>, but what if that hides something that you want to see?</p>
+<p>Well heres a little tip, if you surround the first character in brackets, then it will exclude the grep command itself.. Example:</p>
+<pre><code class="lang-bash"># ps aux |grep [s]omething
+jdoe  29731  1.0  0.0  20256  1176 pts/0    S+   20:30   1:47 tar cvfz something.tar.gz directory
+</code></pre>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>

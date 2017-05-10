@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/DataTables.html"><span data-hover="DataTables">DataTables</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/javascript.html"><span data-hover="javascript">javascript</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/jQuery.html"><span data-hover="jQuery">jQuery</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/plugins.html"><span data-hover="plugins">plugins</span></a></li>
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">DataTables Live Ajax Plugin - Keep your AJAX sourced tables up to date</h2>
+          <p class="small-title"><span>November 16, 2015</span></p>
+
+          <p>I&#39;m a big fan of the Open Source jQuery plugin <a href="http://datatables.net/">DataTables</a>. Out of all the jQuery plugins I have used, I feel comfortable saying it&#39;s one of the most stable and powerful.  For those of you who don&#39;t know what DataTables is...</p>
+<p>DataTables is a plug-in for the <a href="http://jquery.com/">jQuery</a> Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table.</p>
+<p>Pretty basic, but very powerful and easy to use. It also comes with an extremely diverse and powerful API, that let&#39;s you control almost every aspect of the table, as well as write your own plugins, which is what I have been getting into lately.</p>
+<p>DataTables allows you to pull the source of the tables from the <a href="http://datatables.net/manual/data#DOM">DOM</a>, from a <a href="http://datatables.net/manual/data#Javascript">JSON</a> data structure, or an <a href="http://datatables.net/manual/data#Ajax">AJAX</a> Source. This plugin takes advantage of the AJAX sourced data tables.</p>
+<p>I hang out in the <a href="http://datatables.net/forums/">DataTables forums</a> every so often, and I saw a couple requests from people who wanted a way to update just the rows that need updating in the table, and while there is a useful API method, <em><a href="http://datatables.net/reference/api/ajax.reload(">ajax.reload()</a>)</em>, that method will reload the entire table, which may be a little overboard if you have thousands of rows and only a single row needs to be added/updated/removed.</p>
+<p>I went ahead and created a new plugin to handle this, <a href="https://github.com/jhyland87/DataTables-Live-Ajax/">DataTables Live Ajax</a>.</p>
+<p>To use it, just checkout the git repository, include the JS file called <em>dataTables.liveAjax.js</em>, then when you initialize your DataTables instance, configure the setting called <em>liveAjax</em>.</p>
+<h3 id="-git-repo-https-github-com-jhyland87-datatables-live-ajax-"><a href="https://github.com/jhyland87/DataTables-Live-Ajax/">GIT Repo</a></h3>
+<hr>
+<h2 id="how-it-works">How It Works</h2>
+<p>The concept is pretty basic really. Every <em>n</em> milliseconds (default is <em>5000</em>, which is 5 seconds), there will be a new AJAX request to the data source that was configured in the DataTables instance. The new data will be compared to the current data, and the changes will be made accordingly.</p>
+<p>Ideally, it would be better to use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">WebSockets</a>, as opposed to iterating over AJAX calls, which is much more &quot;expensive&quot; in terms of resources, but that may not always be optional. I went with the AJAX calls initially because it was quicker than having to setup a WebSocket server, but without a doubt, the WebSockets would be the way to go, and I will be switching over to a WebSocket server in the next revamp (soon!).</p>
+<p>One thing you need to realize though, is that the plugin needs to have a way to compare each row to it&#39;s exact counterpart within the new JSON data. If the AJAX source contains <a href="http://datatables.net/examples/ajax/simple.html">arrays for the row data</a>, then that isn&#39;t possible. So what is recommended, is to use <a href="http://datatables.net/examples/ajax/objects.html">objects for the row data</a>, and set the unique row identifier via the <em><a href="http://datatables.net/reference/option/rowId">rowId</a></em> setting, or you can use the default one, which is _DT<em>RowId</em>.  If you don&#39;t set a row ID for your data, then theres no way for the plugin to know what rows need updating, thus the <em>entire</em> table is reloaded if <em>any</em> discrepancies are found in the new data source.. Which is basically the same thing as the <em>ajax.reload()</em> API method.</p>
+<p>If you are already familiar with DataTables, and using an AJAX source for your table, then you probably know what I&#39;m talking about.</p>
+<hr>
+<h2 id="examples">Examples</h2>
+<p><em>Basic Example</em> - This will check for any changes in 5 second intervals, and update the data accordingly.</p>
+<pre><code class="lang-javascript">$(&#39;#example&#39;).DataTable({
+    ajax: &#39;dataSrc.php&#39;,
+    rowId: &#39;emp_id&#39;,
+    liveAjax: true
+});
+</code></pre>
+<p>Advanced Example - This ones a bit more complicated. Just to show you how you can take advantage of some of the existing options for the plugin.</p>
+<pre><code class="lang-javascript">$(&#39;#example&#39;).DataTable({
+    ajax: {
+        url: &#39;dataSrc.php&#39;,
+        type: &#39;POST&#39;,
+        data: { dataSrc: &#39;something&#39;},
+        dataSrc: &#39;something&#39;
+    },
+    rowId: &#39;emp_id&#39;,
+    liveAjax: {
+        // Update every 4.5 seconds
+        interval: 4500,
+        // Enable DT XHR Callbacks for all AJAX requests
+        dtCallbacks: true,
+        // Abort the XHR Polling if one of these errors were encountered
+        abortOn: [&#39;error&#39;, &#39;timeout&#39;, &#39;parsererror&#39;, &#39;abort&#39;]
+    }
+});
+</code></pre>
+<hr>
+<h2 id="initialization-options">Initialization Options</h2>
+<p>While I was making this, I added an option for almost everything I could think of. This plugin was just created, so while I am sure I may be making some updates, I will try to keep the options the same throughout all the versions, but heres a list of the existing options:
+|Parameter|Type|Default|Description|
+|--- |--- |--- |--- |
+|liveAjax|boolean|true|Enable/Disable liveAjax plugin|
+|liveAjax.interval|number|5000|Interval to check for updates (in milliseconds)|
+|liveAjax.dtCallbacks|boolean|false|This will determine if the DataTables xhr callbacks should be executed for <em>every</em> AJAX Request|
+|liveAjax.abortOn|array|error, timeout, parsererror|Cease all future AJAX calls if one of these statuses were encountered|
+|liveAjax.noUpdate|function|<em>N/A</em>|Callback executed when <em>no</em> discrepancies were found in the new JSON data; (Parameters: <em>[object]</em> DataTables Settings, <em>[object]</em> JSON Data for table; <em>[object]</em> XHR Object)|
+|liveAjax.onUpdate|function|<em>N/A</em>|Callback executed when discrepancies were found in the new JSON data, and the table was updated; (Parameters: <em>[object]</em> DataTables Settings, <em>[object]</em> Updated/Deleted/Created row data, <em>[object]</em> New JSON Data for table; <em>[object]</em> XHR Object)|</p>
+<hr>
+<h2 id="liveajax-events">LiveAjax Events</h2>
+<p>The LiveAjax plugin fires off it&#39;s own events. Just as all the DataTables events are named <strong>_eventName_.dt</strong>, the LiveAjax events are named <strong>_eventName_.liveAjax</strong>. Heres the current list of events:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>init.liveAjax</td>
+<td>Triggered when liveAjax was initiated on a new table</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> XHR Object</td>
+</tr>
+<tr>
+<td>xhrErr.liveAjax</td>
+<td>Triggered for all XHR Errors</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> XHR Object, <em>[string]</em> Error Thrown</td>
+</tr>
+<tr>
+<td>xhrErrTimeout.liveAjax</td>
+<td>Triggered when an XHR <em>timeout</em> was encountered</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> XHR Object, <em>[string]</em> Error Thrown</td>
+</tr>
+<tr>
+<td>xhrErrError.liveAjax</td>
+<td>Triggered when an XHR <em>error</em> was encountered</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> XHR Object, <em>[string]</em> Error Thrown</td>
+</tr>
+<tr>
+<td>xhrErrParseerror.liveAjax</td>
+<td>Triggered when an XHR <em>parsererror</em> was encountered</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> XHR Object, <em>[string]</em> Error Thrown</td>
+</tr>
+<tr>
+<td>xhrErrAbort.liveAjax</td>
+<td>Triggered when an xhr <em>abort</em> was encountered</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> XHR Object, <em>[string]</em> Error Thrown</td>
+</tr>
+<tr>
+<td>xhrErrUnknown.liveAjax</td>
+<td>Triggered when an unknown XHR error was encountered</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> XHR Object, <em>[string]</em> Error Thrown</td>
+</tr>
+<tr>
+<td>xhrSkipped.liveAjax</td>
+<td>Triggered when an XHR call was skipped</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[string]</em> Reason for skip (<em>paused</em> or <em>processing</em>)</td>
+</tr>
+<tr>
+<td>setInterval.liveAjax</td>
+<td>Triggered when the polling interval was changed</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[number]</em> New interval</td>
+</tr>
+<tr>
+<td>clearTimeout.liveAjax</td>
+<td>Triggered when the loop timeout has been cleared</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> XHR Object</td>
+</tr>
+<tr>
+<td>abortXhr.liveAjax</td>
+<td>Triggered when an XHR request is aborted</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> XHR Object</td>
+</tr>
+<tr>
+<td>setPause.liveAjax</td>
+<td>Triggered when the polling was paused or unpaused</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[boolean]</em> Pause Status</td>
+</tr>
+<tr>
+<td>onUpdate.liveAjax</td>
+<td>Triggered when the new JSON changes were implemented</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> Created/Deleted/Updated row data, <em>[object]</em> DataTable JSON data, <em>[object]</em> XHR Object</td>
+</tr>
+<tr>
+<td>noUpdate.liveAjax</td>
+<td>Triggered when the the table did not need updating</td>
+<td><em>[object]</em> Event, <em>[object]</em> DataTables Settings, <em>[object]</em> DataTable JSON, <em>[object]</em> XHR Object</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="liveajax-api-methods">LiveAjax API Methods</h2>
+<p>In addition to the already awesome DataTables API, LiveAjax comes with it&#39;s own set of API calls. I added an API method for just about anything I could think of:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Return</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iveAjax.initiate()</td>
+<td>Start XHR Polling</td>
+<td><em>[object]</em> DataTables API</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td>iveAjax.abortXhr()</td>
+<td>Abort Current XHR request</td>
+<td><em>[object]</em> DataTables API</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td>liveAjax.clearTimeout()</td>
+<td>Clear the polling loop</td>
+<td><em>[object]</em> DataTables API</td>
+<td><em>[boolean]</em> Abort current XHR request</td>
+</tr>
+<tr>
+<td>liveAjax.xhrStatus()</td>
+<td>Retrieve latest XHR Status</td>
+<td><em>[object]</em> DataTables API, <em>[string]</em> XHR Text status</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td>liveAjax.resume()</td>
+<td>Resume Updates</td>
+<td><em>[object]</em> DataTables API</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td>liveAjax.togglePause()</td>
+<td>Toggle Pause Status</td>
+<td><em>[object]</em> DataTables API</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td>liveAjax.pause()</td>
+<td>Pause XHR Polling</td>
+<td><em>[object]</em> DataTables API</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td>liveAjax.isPaused()</td>
+<td>Pause XHR Polling</td>
+<td><em>[object]</em> DataTables API, <em>[boolean]</em> Pause Status</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td>liveAjax.reload()</td>
+<td>Reload table</td>
+<td>DataTables API Object</td>
+<td><em>[function]</em> Callback, <em>[boolean]</em> Reset pagination (default <em>false</em>), <em>[boolean]</em> Force through paused status</td>
+</tr>
+<tr>
+<td>liveAjax.setInterval()</td>
+<td>Change update interval</td>
+<td>DataTables API Object</td>
+<td><em>[integer]</em> New interval (use <em>null</em> to reset to default or config value)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Thats it! If you have any issues, I urge you to go to the <a href="https://github.com/jhyland87/DataTables-Live-Ajax/issues">issues</a> section of the <a href="https://github.com/jhyland87/DataTables-Live-Ajax">LiveAjax GIT Repo</a> and submit any questions there.</p>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/DataTables.html"><span data-hover="DataTables">DataTables</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/javascript.html"><span data-hover="javascript">javascript</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/jQuery.html"><span data-hover="jQuery">jQuery</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/plugins.html"><span data-hover="plugins">plugins</span></a></li>
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>

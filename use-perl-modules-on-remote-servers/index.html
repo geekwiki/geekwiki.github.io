@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/cpan.html"><span data-hover="cpan">cpan</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/perl.html"><span data-hover="perl">perl</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/perl-module.html"><span data-hover="perl-module">perl-module</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/ppm.html"><span data-hover="ppm">ppm</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/remote-module.html"><span data-hover="remote-module">remote-module</span></a></li>
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">Use Perl modules on remote servers.</h2>
+          <p class="small-title"><span>June 7, 2012</span></p>
+
+          <p>As a Systems Administrator, mainly for Unix/Linux, you realize how big of a deal automation is. At my work, we have nearly a thousand CentOS/RHEL servers. To execute scripts or commands on a list of servers, you can use a variety of methods.... Pssh, Multiexec (Which Geoff, Kyle and myself made, thank ya very much ;]), Cluster SSH, or even just use Terminator, (I know theres a way to run the same command in all terminator windows).</p>
+<p>The problem I had was Perl modules. I write a lot of my own Perl modules, and with that, I update them a lot as well. Now to use the Perl module, it needs to be on the local server. either in the $ENV{&#39;PATH&#39;}, or in the directory the script is being executed itself. So I would write a .pm file, and then just put it on all the servers via either GIT, SVN, or wget it using one of the above tools I listed.</p>
+<p>This kinda got to be a pain. I just wanted to update the module, then have it done. with 1000 servers, you run into problems updating them on every server. FW rules, svn conflicts, git conflicts, rsa keys failing, authentication not working, etc etc etc.</p>
+<p>Well, I finally found a solution, and it works VERY well. I found a way to keep the Perl module on a remote server, and use it on another, as long as it&#39;s accessible via HTTP(s), then you can use it. You can even use authentication, this way not everyone can open a browser and grab the module content.</p>
+<p>So lets get started.</p>
+<h3 id="step-1-create-the-module-repository">Step 1) Create The Module Repository</h3>
+<p>Now all you have to do is to create a space on a web server for your modules. I recommend just having a publicly accessible SVN repository, so you can just edit your code locally, commit, and they are automatically updated on all servers. Also, its probably a good idea to create a hierarchy for the modules. Maybe later you will want to use different authentication for different modules.</p>
+<h3 id="step-2-make-the-module">Step 2) Make The Module</h3>
+<p>This is a tutorial on how to access modules from a remote location, NOT a tutorial on how to make modules.</p>
+<p>This is a very simple module called FOOBAR.pl. It has one function called check_less, it takes two numbers, and if one number is greater than the other, it returns a fail code:</p>
+<pre><code class="lang-perl">package FOOBAR;
+
+use strict;
+use warnings;
+
+sub check_less {
+ # Initiate the values
+ my ($self, $num, $limit) = (@_);
+
+ # Basic sanity checking
+ return 0 unless(($self) &amp;&amp; ($limit));
+
+ # If $num is greater than $limit, fail
+ return ($num &gt; $limit) ? 0 : 1;
+};
+
+1;
+</code></pre>
+<p>Pretty basic right? If you know Perl at all, then you don&#39;t need much more explication for the above.</p>
+<h3 id="step-3-initializing-the-module">Step 3) Initializing The Module</h3>
+<p>I guess before you do this, you should test to make sure this can hit the module, just jump into the command line and run a wget or telnet or whatever, just make sure you can hit it.</p>
+<p>So lets start. First off, paste this into your perl script...</p>
+<pre><code class="lang-perl">BEGIN {
+    my $LWP = eval { require LWP::UserAgent; };
+    if(!$LWP) {
+        print &quot;Perl module LWP::UserAgent is not installed on this server.n&quot;;
+        exit 1;
+    }
+    else {
+        use LWP::UserAgent;
+    }
+
+    push @INC, sub {
+        my $URL = &#39;http://someserver.com/perl_modules/FOOBAR.pm&#39;;
+        my $ua = LWP::UserAgent-&gt;new;
+        $ua-&gt;timeout(10);
+        my $module = $ua-&gt;get($URL);
+        if($module-&gt;is_success) {
+            my $package = $module-&gt;content;
+            open my $fh, &#39;status_line.&quot;n&quot;;
+            exit 1;
+        }
+    }
+}
+</code></pre>
+<p>So, explaining what that does...</p>
+<p>The BEGIN code block makes sure that no matter where you put this, it gets ran in the beginning.</p>
+<p>Next, is the section that actually initializes the LWP::UserAgent module. If you have this installed on your server, you shouldn&#39;t have a problem. You can test by running this line:</p>
+<pre><code class="lang-bash">$ perl -MLWP::UserAgent -e &quot;print &quot;Module installed.n&quot;;&quot;
+</code></pre>
+<p>If it works, then you can continue.</p>
+<pre><code class="lang-perl">my $LWP = eval { require LWP::UserAgent; };
+    if(!$LWP) {
+        print &quot;Perl module LWP::UserAgent is not installed on this server.n&quot;;
+        exit 1;
+    }
+    else {
+        use LWP::UserAgent;
+    }
+</code></pre>
+<p>This tries to load the LWP::UserAgent module. Typically if you try to use a module that doesn&#39;t exist, you get an ugly error,  this will catch the error and print out a nice pretty one, then exit. You can edit this to log the error, or send an alert to Nagios or Zabbix or something of that sort.</p>
+<p>The second part of the BEGIN code block, is the part that actually puts the module content into use.</p>
+<pre><code class="lang-perl">   push @INC, sub {
+        my $URL = &#39;http://someserver.com/perl_modules/FOOBAR.pm&#39;;
+        my $ua = LWP::UserAgent-&gt;new;
+        $ua-&gt;timeout(10);
+        my $module = $ua-&gt;get($URL);
+        if($module-&gt;is_success) {
+            my $package = $module-&gt;content;
+            open my $fh, &#39;status_line.&quot;n&quot;;
+            exit 1;
+        }
+    }
+</code></pre>
+<p>The @INC is basically the path of all of the modules or the module directories. If you were to print Dumper(@INC), you would see all of the modules. So this will simply try to use LWP::UserAgent to call the content of the module, if it fails, instead of spitting out an ugly error, it just throws a fail statement. Again, you can send this to Nagios or Zabbix or anything you want.</p>
+<p>Thats pretty much it. Put it all together and you have your script. Heres an example of the entire script:</p>
+<pre><code class="lang-perl">#!/usr/bin/perl
+use strict;
+use warnings;
+
+BEGIN {
+    my $LWP = eval { require LWP::UserAgent; };
+    if(!$LWP) {
+        print &quot;Perl module LWP::UserAgent is not installed on this server, it must be installed to use the remote SAM modules.n&quot;;
+        exit 1;
+    }
+    else {
+        use LWP::UserAgent;
+    }
+
+    push @INC, sub {
+        my $URL = &#39;http://someserver.com/perl_modules/FOOBAR.pm&#39;;
+        my $ua = LWP::UserAgent-&gt;new;
+        $ua-&gt;timeout(10);
+        my $module = $ua-&gt;get($URL);
+        if($module-&gt;is_success) {
+            my $package = $module-&gt;content;
+            open my $fh, &#39;status_line.&quot;n&quot;;
+            exit 1;
+        }
+    }
+}
+
+use FOOBAR;
+
+my($number, $limit) = ($ARGV[0], $ARGV[1]);
+
+my $result = FOOBAR-&gt;check_less($number, $limit);
+
+print $number, ($result) ? &quot; is less than &quot; : &quot; is greater than &quot;, $limit .&quot;n&quot;;
+</code></pre>
+<p>Heres some benchmarks of the script running with the module in the local directory, and the module running remotely on a remote web server:</p>
+<h3 id="examples-">EXAMPLES:</h3>
+<p>Example using the FOOBAR.pm module remotely:</p>
+<pre><code class="lang-bash">$ perl jhyland$ time perl test.pl 10 20
+10 is less than 20
+
+real    0m0.687s
+user    0m0.125s
+sys    0m0.059s
+</code></pre>
+<p>Example using the FOOBAR.pm module in the local directory:</p>
+<pre><code class="lang-bash">$ perl jhyland$ time perl test.pl 10 20
+10 is less than 20
+
+real    0m0.012s
+user    0m0.007s
+sys    0m0.004s
+</code></pre>
+<h3 id="now-for-the-con">Now For The Con</h3>
+<p>Pretty much the only issue with using modules on remote servers, is you&#39;re script is subject to the response time of the HTTP requests. As we all know, HTTP isn&#39;t always reliable. You deal with timeouts, server reset, etc etc</p>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/cpan.html"><span data-hover="cpan">cpan</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/perl.html"><span data-hover="perl">perl</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/perl-module.html"><span data-hover="perl-module">perl-module</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/ppm.html"><span data-hover="ppm">ppm</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/remote-module.html"><span data-hover="remote-module">remote-module</span></a></li>
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>

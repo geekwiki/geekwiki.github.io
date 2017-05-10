@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">Adding JS &amp; CSS Files To CKEditor Content</h2>
+          <p class="small-title"><span>August 23, 2015</span></p>
+
+          <p>Recently, I&#39;ve been working on a web-development project (Which I&#39;m omitting from this post), which uses the popular WYSIWYG editor, <a href="http://ckeditor.com/">CKEditor</a>.</p>
+<p>A popular issue with WYSIWYG editors, is even though they have display a very accurate depiction of what the content will look like as pure HTML, the content still looks different from what it will be when it&#39;s actually injected into your page, this is typically because your page has CSS and JS to aid in styling, where as the WYSIWYG editor does not.</p>
+<p>Like CKEditor, most of the common RTE&#39;s use an iFrame for the content, which is why the CSS/JS is not reflected in the content. I think this actually is done intentionally, to show what it will look like as html exactly, and only html, without any outside interference.</p>
+<p>However, I wanted the CSS/JS inside the content. After looking a little bit, I did find a plugin on the CKEditor website, called <a href="http://ckeditor.com/addon/doksoftinclude">CKEditor Include CSS &amp; JS</a>, which seemed to accomplish exactly what I wanted.</p>
+<p>Two problems with this plugin...</p>
+<ol>
+<li>I don&#39;t like to pay for such little software packages. I don&#39;t at all mind paying for things like Jira for example, but this just seemed to minor</li>
+<li>We aren&#39;t absolutely sure if the project I&#39;m working on will be Open Source or not, or a mixture. If it&#39;s not, then this would need to be a factor in any 3rd party software, and if I move forward as if its going to be Open Source, and its not, then that means I would have to go back and re-factor a lot of code.</li>
+</ol>
+<p>So, I decided to just do it myself, which was actually just as easy as it sounds. I can&#39;t believe people pay for software like this, lol.</p>
+<p>Before I show the code below and explain it, let me stress that I am NOT a professional web developer, I&#39;m a Linux Engineer, I just so happen to  know a good amount of web development skills...</p>
+<h3 id="how-to-use-">How to use...</h3>
+<pre><code>1. Set the ckeditor_id value to the ID of the textarea using CKEditor
+2. Set the value of container_classes to whatever classes the final HTML will be displayed in when displayed on the web-page. Since the ALL CSS/JS of the page will be reflected in the content of the textarea, it&#39;s important to set this value correctly, or it may look completely different.
+3. Copy/Paste the code to wherever you want it to execute.
+</code></pre><h3 id="whats-it-do-">Whats it do...</h3>
+<ol>
+<li>Look through the current page for any CSS files, specifically looking for any <strong><em>&lt;link&gt;</em></strong> tags that have the attribute/value of <strong><em>type=&quot;text/css&quot;</em></strong>, which if done properly, all of the link tags should have (if loading CSS), load the value of <em> <strong>href</strong> </em> into an array.</li>
+<li>Do the same thing with Javascript files, looking for any <strong><em>&lt;script&gt;</em></strong> tags with the attribute/value of <em> <strong>type=&quot;text/javascript&quot;</strong> </em>, load the value of <em> <strong>src</strong> </em> into an array.</li>
+<li>Find the CKEditor instance by looking for an instance named by the value of the variable <strong>_ckeditor<em>id</em></strong></li>
+<li>If you have any extra CKEditor settings, apply them here....</li>
+<li>Waits for the CKEditor instance to be fully initialized, this takes longer than window.load or document.ready, so wait for CKEditors <strong><em>instanceReady</em></strong> event handler.</li>
+<li>Once initialized, look for the correct frame associated to the CKEditor you specified in the _ <strong>ckeditor_id</strong> <em> variable. This will look for the correct iframe, not just any iframe. Then create a handler referencing the **</em>&lt;head&gt;_** of that iframe</li>
+<li>Loop through the array created earlier with the CSS files and create a new <strong><em>&lt;link&gt;</em></strong> tag with the stylesheet source as the source collected earlier</li>
+<li>Do the same thing with the array created earlier with the JS files, creating a <em> <strong>&lt;script&gt;</strong> </em> tag with the javascript href as the href collected earlier</li>
+</ol>
+<p>And finally, you can view the code here:</p>
+<pre><code class="lang-javascript">// I find its best to do this in window.load as opposed to document.ready, since all the
+// DOM elements are then loaded
+$( window ).load(function(){
+    // ID of the cKeditor instance
+    var ckeditor_id = &#39;your_ckeditor_id&#39;;
+    var container_classes = &#39;panel-body panel&#39;;
+
+    var $head = $(&#39;head&#39;);
+    var css_files = [];
+    var js_files = [];
+
+    // Get all CSS files of the current page
+    $head.find(&#39;link[type=&amp;quot;text/css&amp;quot;]&#39; ).each(function(i,css){
+        css_files.push($(css).attr(&#39;href&#39;));
+    });
+
+    // Then get all the JS files
+    $head.find(&#39;script[type=&amp;quot;text/javascript&amp;quot;]&#39; ).each(function(i,js){
+        js_files.push($(js).attr(&#39;src&#39;));
+    });
+
+    // CKeditor handler
+    var $ckeditor = CKEDITOR.instances[ckeditor_id];
+
+    // Add whatever class(es) are of the DIV/SPAN that you will be displaying the content in
+    $ckeditor.config.bodyClass = container_classes;
+
+    // Wait for the CKeditor instance to be initiated, it takes a bit longer
+    // than just window.load, but it has an event handler
+    CKEDITOR.on(&#39;instanceReady&#39;, function(){
+        // Find the exact iframe thats used by this ckeditor_id textarea
+        var $ckeditor_frame = $(&#39;#cke_&#39; + ckeditor_id).find(&#39;.cke_wysiwyg_frame&#39;);
+
+        // Head element of CKEditors iFrame
+        var $ckeditor_head  = $ckeditor_frame.contents().find(&amp;quot;head&amp;quot;);
+
+        // Add all the CSS files..
+        $.each(css_files, function(i,css_file){
+            $ckeditor_head.append($(&amp;quot;&amp;lt;link/&amp;gt;&amp;quot;, {
+                rel: &amp;quot;stylesheet&amp;quot;,
+                href: css_file,
+                type: &amp;quot;text/css&amp;quot;
+            }));
+        });
+
+        // Then add all the JS files..
+        $.each(js_files, function(i,js_file){
+            $ckeditor_head.append($(&amp;quot;&amp;lt;script/&amp;gt;&amp;quot;, {
+                src: js_file,
+                type: &amp;quot;text/javascript&amp;quot;
+            }));
+        });
+
+        // DONE!
+    });
+});
+</code></pre>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>

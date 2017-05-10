@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/ColVis.html"><span data-hover="ColVis">ColVis</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/DataTables.html"><span data-hover="DataTables">DataTables</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/javascript.html"><span data-hover="javascript">javascript</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/jQuery.html"><span data-hover="jQuery">jQuery</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/plugins.html"><span data-hover="plugins">plugins</span></a></li>
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">DataTables Hide Empty Columns Plugin – Automatically hide any columns that are empty</h2>
+          <p class="small-title"><span>November 17, 2015</span></p>
+
+          <p>I recently posted two other <a href="http://datatables.net">DataTables</a> plugins I created, one for <a href="/articles/datatables-keep-conditions-plugin-link-to-the-exact-settings-within-the-current-table.html">keeping the table conditions in the URL</a>, and another for <a href="/articles/datatables-live-ajax-plugin-keep-your-ajax-sourced-tables-up-to-date.html">keeping AJAX sourced tables up-to-date</a>. Well, I created another one!</p>
+<p>One project I&#39;m working on has a lot of dynamic tables, which can have any number of columns. Since the number of columns doesn&#39;t have a limit, I wanted to automatically hide any columns that aren&#39;t populated with any data. Once the columns are hidden (which is on the table initiation), the columns can easily be set back to visible by either the <em>column().visible()</em> API method, or the <a href="http://datatables.net/reference/button/colvis">Column Visibility</a> button.</p>
+<h3 id="-git-repo-https-github-com-jhyland87-datatables-hide-empty-columns-live-demos"><a href="https://github.com/jhyland87/DataTables-Hide-Empty-Columns">GIT Repo</a> - Live Demos</h3>
+<hr>
+<h2 id="configuration">Configuration</h2>
+<p>If you just set the hideEmptyCols_ (or <em>hideEmptyColumns</em>) setting to <em>true</em>, then <em>all</em> columns will be targeted and processed, thus hiding any empty column. However, you do have the option to garget specific columns, with either the column name, or the column index. You can also have this targeted array set to be processed, making it a <em>white-list</em> (default), or you can set it to be ignored, making it a <em>black-list</em>.</p>
+<p>Here are the existing parameters
+|Parameter|Type|Default|Description|
+|--- |--- |--- |--- |
+|hideEmptyCols|boolean/object|true|Enable/Disable hideEmptyCols plugin (<em>hideEmptyColumns</em> works as well)|
+|hideEmptyCols.columns|array|<em>All Columns</em>|Determine which columns to target, can either use the <a href="http://datatables.net/reference/option/columns.name">column name</a>, the <a href="http://datatables.net/reference/api/column(">index</a>.index()), or a negative integer to target columns starting from the right side of the table|
+|hideEmptyCols.whiteList|boolean|true|Determine if the targets listed in <em>hideEmptyCols.columns</em> should be treated as a whitelist or blacklist (<em>false</em> will target all columns except those listed)|</p>
+<hr>
+<h2 id="examples">Examples</h2>
+<p><strong>Basic Initialization</strong> - Hide any columns with no values (Since no button was used, the columns would need to be toggled via an API call)</p>
+<pre><code class="lang-javascript">$(&#39;#example-1&#39;).DataTable({
+    hideEmptyCols: true
+});
+</code></pre>
+<p><strong>Basic w/ ColVis Button</strong> - Target <strong>all</strong> columns &amp; use DataTables <a href="https://datatables.net/reference/button/columnsToggle">ColumnsToggle</a> button</p>
+<pre><code class="lang-javascript">$(&#39;#example-1&#39;).DataTable({
+    dom: &#39;Bt&#39;,
+    buttons: [ &#39;columnsToggle&#39; ],
+    hideEmptyCols: true
+});
+</code></pre>
+<p><strong>Targeting Columns via <a href="http://datatables.net/reference/api/column(">indexes</a>.index()) or the position</strong> - This would target the column indexes <em>0</em> and <em>3</em>, as well as the column on the far right side of the table</p>
+<pre><code class="lang-javascript">$(&#39;#example-1&#39;).DataTable({
+    hideEmptyCols: [ 0, 3, -1 ]
+});
+</code></pre>
+<p><strong>Targeting Columns (Names)</strong> - Target columns via name (Useful for when using JSON or AJAX data src with Objects)</p>
+<pre><code class="lang-javascript">$(&#39;#example-1&#39;).DataTable( {
+    hideEmptyCols: [&#39;extn&#39;, 5], // Target extension col, and 5th col (salary)
+    data: dataSet,
+    columns: [
+        { title: &amp;quot;Name&amp;quot;, data: &amp;quot;name&amp;quot; },
+        { title: &amp;quot;Position&amp;quot;, data: &amp;quot;position&amp;quot; },
+        { title: &amp;quot;Office&amp;quot;, data: &amp;quot;office&amp;quot; },
+        { title: &amp;quot;Extn.&amp;quot;, data: &amp;quot;extn&amp;quot; },
+        { title: &amp;quot;Start date&amp;quot;,  data: &amp;quot;start_date&amp;quot; },
+        { title: &amp;quot;Salary&amp;quot;,  data: &amp;quot;salary&amp;quot; }
+    ]
+} );
+</code></pre>
+<p><strong>Blacklisting Columns</strong> - Target <em>all</em> columns except column indexes <strong>1</strong> and <strong>3</strong></p></p>
+<pre><code class="lang-javascript">$(&#39;#example-1&#39;).DataTable({
+    hideEmptyCols: {
+        columns: [1,3],
+        whiteList: false
+    }
+});
+</code></pre>
+<hr>
+<h2 id="the-end">The End</h2>
+<p>Well, thats it! If you find any bugs or issues, just create an issue in the Git repo, same for feature requests. I dont always see comments on these blog posts</p>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/ColVis.html"><span data-hover="ColVis">ColVis</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/DataTables.html"><span data-hover="DataTables">DataTables</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/javascript.html"><span data-hover="javascript">javascript</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/jQuery.html"><span data-hover="jQuery">jQuery</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/plugins.html"><span data-hover="plugins">plugins</span></a></li>
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>

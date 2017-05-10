@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/dig.html"><span data-hover="dig">dig</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/host.html"><span data-hover="host">host</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/htop.html"><span data-hover="htop">htop</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/less.html"><span data-hover="less">less</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/more.html"><span data-hover="more">more</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/mtr.html"><span data-hover="mtr">mtr</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/nslookup.html"><span data-hover="nslookup">nslookup</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/top.html"><span data-hover="top">top</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/traceroute.html"><span data-hover="traceroute">traceroute</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/tracert.html"><span data-hover="tracert">tracert</span></a></li>
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">Alternatives To Commonly Used Linux Commands</h2>
+          <p class="small-title"><span>June 30, 2014</span></p>
+
+          <p>In my opinion, one of the best things about Unix/Linux, is there&#39;s typically always more than one correct way to do something. Sometimes, some ways are better than others, or quicker or more efficient or reliable, but it&#39;s common to get locked into doing something one specific way just because you&#39;ve done it repeatedly. There&#39;s always alternative methods of accomplishing a task, like if you wanted to find out what ports are open on a server, depending on if you are on the server itself or not, you have lsof, nmap, netstat</p>
+<p>I like to research alternative methods of accomplishing common tasks, just to see if there&#39;s a better way of doing.... whatever it is I&#39;m doing.</p>
+<h2 id="traceroute-vs-mtr">Traceroute vs. MTR</h2>
+<p>The <em><a href="http://linux.die.net/man/8/traceroute" title="Traceroute Man Page">traceroute</a></em> command is probably one of the most commonly used commands for diagnosing network related issues. It&#39;s a fairly simple command, you just run something like &#39;traceroute google.com&#39; and it</p>
+<p>Screenshot of the difference between the output of traceroute and the output of mtr
+<img src="/assets/articles/traceroute_vs_mtr.png" alt="Screenshot of the difference between the output of traceroute and the output of mtr"></p>
+<p>will print the route packets trace to whatever host you specified (google.com, in my example).</p>
+<p>What if you are waiting for something to change though? Most administrators would combined <em>traceroute</em> with the <em><a href="http://linux.die.net/man/1/watch" title="Linux Watch Man Page">watch</a></em> command, or even worse, hit the up arrow and hit enter about a thousand times.</p>
+<p>There&#39;s a great alternative to this, it&#39;s a command called <a href="http://linux.die.net/man/8/mtr" title="Linux Man Page MTR">mtr</a>. <em>mtr</em> isn&#39;t always installed by default, so you may need to use your package installer to install it.</p>
+<p><em>mtr</em> is essentially a live feed of the <em>traceroute</em> output (Screenshot above). It also will show you packet loss on each hop in a live feed, which is what you would alternatively be using <em>ping</em> to do, so you could say this accomplishes both <em>traceroute</em> and <em>ping</em>. This is very useful when you&#39;re waiting for something to change, or if you need to actively monitor the path to a server, etc.</p>
+<hr>
+<h2 id="top-vs-htop">Top vs. Htop</h2>
+<p>Even more popular than the <em>traceroute</em> command would be top. I think top is probably the first command you learn as a sys admin, as far as diagnostics goes. Top will show you the load averages, the top</p>
+<p>Difference in the output of the commands top and htop
+<img src="/assets/articles/top_vs_htop.png" alt="Command outputs of TOP and HTOP"></p>
+<p>Resource intensive processes, the users, pids, memory utilization, CPU utilization, pretty much everything you need to know. If you want to manipulate the output (Such as sort by CPU or Memory, only show specific user processes, or show a tree view for example), that can only be accomplished using the arguments associated with top when you run the command itself.</p>
+<p>An awesome alternative to <em>top</em>, is <a href="http://linux.die.net/man/1/htop" title="Linux Command Htop Man Page">htop</a>. Htop will provide you with essentially the same functionally as top, except the interface of htop is fully interactive! You have the ability to actively manipulate the output or interact with the processes in the output, using the F-keys:</p>
+<p><strong>F4</strong> lets you filter the output so you can look for specific commands; <strong>F5</strong> will display the processes in a tree view, showing each parent and child process; <strong>F6</strong> lets you pick a column to sort by, and how to sort it; <strong>F7</strong> and <strong>F8</strong> let you manipulate the nice level of the process; <strong>F9</strong> lets you pick a process to terminate, as well as which kill signal to send, and you can escape htop with <strong>F10</strong></p>
+<p>Just like mtr (and most of the commands listed here), you will need to install this using your package manager.</p>
+<p><strong>Note</strong>: <em>htop</em> will only display processes that it has permissions to, so if you want to see all of the processes on the system, be sure to use sudo. I would just recommending adding an alias to your ~/.bash_profile to alias htop=&quot;sudo htop&quot;</p>
+<p>Also...  Another alternative to <em>top</em>, for monitoring system utilization and resources, would be <em><a href="http://linux.die.net/man/1/atop" title="Linux Man Page Command atop">atop</a></em>. The output of <em>atop</em> is much more informational than the standard <em>top</em> command, but its not at all interactive.</p>
+<hr>
+<h2 id="less-vs-more">Less vs More</h2>
+<p>This ones pretty simple actually. Both less and <em>more</em> are just simply pagers. The key difference between Less and More is, More permits you to view the contents of the file, while scrolling down only, you can not scroll up in More. However, with Less, you can scroll up AND down.</p>
+<p>I think the irony in the names is just a simple pun, <em>less</em> is <em>more</em>, and <em>more</em> is <em>less</em>!..</p>
+<hr>
+<h2 id="nslookup-vs-dig-host">Nslookup vs Dig &amp; Host</h2>
+<p><img src="/assets/articles/Nslookup_VS_Dig_VS_Host.png" alt="Nslookup_VS_Dig_VS_Host"></p>
+<p><a href="http://linux.die.net/man/1/nslookup" title="Nslookup man page">Nslookup</a> is probably one of the most popular commands for any sysadmin. It&#39;s a fairly simple command, all it does is return the DNS record of whatever is provided to it as an argument.</p>
+<p><a href="http://linux.die.net/man/1/dig" title="Dig man page">Dig</a> is pretty simple to use, and a lot more informational than <em>nslookup</em>. It gives you a more in-depth response about the answer provided; Regurgitates the query you requested back to you; Gives you the answers under the answer section; As well as which server was used to query, and the time the query was performed. Yes, some of this is provided by <em>nslookup</em>, but not all of it.</p>
+<p>The <a href="http://linux.die.net/man/1/host" title="Host command man page">host</a> command basically simplifies both nslookup and dig about as much as it can, which is great for scripting or whenever you need to get right down to the point.</p>
+<p>If this isn&#39;t enough as it is... <em>nslookup</em> is deprecated. The organization that maintains the code for <em>nslookup</em>, Internet Systems Consortium, has very clearly stated so. So I would think that says enough as it is.</p>
+<p><strong>Source:</strong> <a href="http://blog.smalleycreative.com/linux/nslookup-is-dead-long-live-dig-and-host/">blog.smalleycreative.com</a></p>
+<hr>
+<h2 id="di-vs-df-and-du-">Di vs Df (and Du)</h2>
+<p><img src="/assets/articles/df_vs_du_vs_di.png" alt="Output comparison between DU, DF and DI" title="DU, DF and DI"></p>
+<p>Pretty much everyone knows about <a href="http://linux.die.net/man/1/df">df</a> but theirs one I just learned about. it&#39;s called <a href="http://linux.die.net/man/1/di">di</a>, which means Disk Information, (I bet you could have guessed that :-P)</p>
+<p>df is a very popular command, used by administrators and scripts very frequently, but still it doesn&#39;t provide some excellent and useful features like actual disk space that is available to each user, various useful display formats etc.</p>
+<p>You can see in the screenshot on the right, the information provided by the commands <em>df</em>, <em>du</em> and <em>di</em>. <em>Di</em> provides more information, and is just as quick as <em>df</em>, and accurate as <em>du</em>, (I&#39;m not quite sure how that&#39;s possible... yet, if you know, please comment on this post).</p>
+<hr>
+<h2 id="vi-vs-vim">Vi vs VIM</h2>
+<p><img src="/assets/articles/youcompleteme.gif" alt="VIM Plugin YouCompleteMe" title="VIM Plugin YouCompleteMe"></p>
+<p>At first glance to me, VIM was nothing more than VI with syntax highlighting. But after further research, I found some differences than count for more than just syntax highlighting.</p>
+<p>VI comes installed on most OS&#39;s by default, but its not nearly as powerful as VIM.</p>
+<p>VIM allows plugins, plugins that won&#39;t work with just the simple VI binary by itself. Getting the list of plugins is a while other post, but ill tell you right now that one worth checking into is called <a href="https://github.com/Valloric/YouCompleteMe">You Complete Me</a>. Heres a quick snippet of what YCM is...</p>
+<blockquote>
+<p>YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for <a href="http://www.vim.org/">Vim</a>. It has several completion engines: an identifier-based engine that works with every programming language, a semantic, <a href="http://clang.llvm.org/">Clang</a>-based engine that provides native semantic code completion for C/C++/Objective-C/Objective-C++ (from now on referred to as &quot;the C-family languages&quot;), a <a href="https://github.com/davidhalter/jedi">Jedi</a>-based completion engine for Python, an <a href="https://github.com/nosami/OmniSharpServer">OmniSharp</a>-based completion engine for C# and an omnifunc-based completer that uses data from Vim&#39;s omnicomplete system to provide semantic completions for many other languages (Ruby, PHP etc.).</p>
+</blockquote>
+<p>Just a couple more cool things that VIM can accomplish that you can&#39;t do directly with VI.. You may have to have all of the VIM packages vim-full. I would just use yum or apt-get to install vim-*, I think  thats around 25 packages, depending on your distro.</p>
+<ul>
+<li>Editing files on other locations using network protocols such as SSH, SCP or even HTTP</li>
+<li>You can modify files inside compressed archives. as-is</li>
+<li>VIM is becoming more and more common, and being ported to much more distros of OS than VI is</li>
+<li>VIM comes with something called &#39;vimdiff&#39;. which allows you to compare two files</li>
+<li>With VIM, you can split the screen for editing multiple files, which is actually very handy when having to do things at the console, and you cant use terminator. Just have to learn the controls, somewhat like <a href="http://linux.die.net/man/1/screen">screen</a>.</li>
+</ul>
+<p>Thats all I have for now. I definitely prefer VIM to VI, but as long as you don&#39;t use NANO... you&#39;re OK in my book ;-)</p>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/dig.html"><span data-hover="dig">dig</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/host.html"><span data-hover="host">host</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/htop.html"><span data-hover="htop">htop</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/less.html"><span data-hover="less">less</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/more.html"><span data-hover="more">more</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/mtr.html"><span data-hover="mtr">mtr</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/nslookup.html"><span data-hover="nslookup">nslookup</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/top.html"><span data-hover="top">top</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/traceroute.html"><span data-hover="traceroute">traceroute</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/tracert.html"><span data-hover="tracert">tracert</span></a></li>
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>

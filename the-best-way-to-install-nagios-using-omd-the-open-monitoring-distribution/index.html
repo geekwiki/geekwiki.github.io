@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/centos.html"><span data-hover="centos">centos</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/Check_MK.html"><span data-hover="Check_MK">Check_MK</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/Nagios.html"><span data-hover="Nagios">Nagios</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/OMD.html"><span data-hover="OMD">OMD</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/RHEL.html"><span data-hover="RHEL">RHEL</span></a></li>
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">The Best Way to Install Nagios - Using OMD The Open Monitoring Distribution</h2>
+          <p class="small-title"><span>June 20, 2012</span></p>
+
+          <p>Without a doubt the best OpenSource monitoring software out there is Nagios. Now I&#39;m sure this is a debatable topic and some favor other options out there such as Zabbix. But if your a true Linux head, and loath any type of point and click graphical user interface then Zabbix would automatically be out of the question.</p>
+<p>However, with the power of Nagios also comes the learning curve. Even though the documentation for Nagios is extreamly thorough it can be a bit daunting for a newbie to get it up and running. Even just to monitor a few hosts. But with this article I aim to change that perception.</p>
+<p>Meet <strong>OMD</strong></p>
+<p>Literally the Best way to install Nagios - Using OMD The Open Monitoring Distribution</p>
+<p><a href="http://omdistro.org/">http://omdistro.org/</a></p>
+<p>OMD as the name implies is an Open Monitoring Distribution. Its not actually an entire Linux distribution but just a pre-packaged and easy to install monitoring platform that utilizes Nagios Core and many of the bells and whistles that people would like to install to get the most out of Nagios. Best of all you can run multiple instances (or sites as OMD refers them) on a single server. This would allow you to run a dev and a prod instance on the same machine for testing configuration changes on one before pushing them to production. OMD also allows for easy backups, as well as copying and mv&#39;ing sites. Upgrades are also a breeze, simply installing the latest version of OMD and running an omd upgrade on the desired site will do all the hard work for you. And boom your done. You could even try upgrading dev first to make sure it doesn&#39;t break anything on your production site first.</p>
+<p>From their site:</p>
+<blockquote>
+<p>OMD avoids the tedious work of manually compiling and integrating Nagios addons while at the same time avoiding the problems of pre-packaged installations coming with your Linux distribution, which are most times outdated and provide no regular updates.</p>
+<p>OMD bundles Nagios together with many important addons and can easily be installed on every major Linux distribution. We provide prebuilt packages for all enterprise Linux distributions and also for some other, such as Ubuntu 11.04.</p>
+</blockquote>
+<p>Here are a few of the things that comes installed with OMD.</p>
+<ul>
+<li>Nagios<ul>
+<li>nagios-plugins</li>
+<li>NSCA</li>
+<li>check_nrpe</li>
+</ul>
+</li>
+<li>Icinga</li>
+<li>Shinken</li>
+<li>nagvis</li>
+<li><a href="http://omdistro.org/wiki/omd/Pnp4nagios">pnp4nagios</a></li>
+<li>rrdtool/rrdcached</li>
+<li>Check_MK</li>
+<li>MK Livestatus</li>
+<li>Multisite</li>
+<li><a href="http://omdistro.org/wiki/omd/Dokuwiki">dokuwiki</a></li>
+<li>Thruk</li>
+<li>Mod-Gearman</li>
+<li>check_logfiles</li>
+<li>check_oracle_health</li>
+<li>check_mysql_health</li>
+<li>jmx4perl</li>
+<li>check_webinject</li>
+<li>check_multi</li>
+</ul>
+<p>Now the real highlight here, and I will get to it later is Check_MK. Check_MK really answers the age old problem of monitoring remote Linux systems in an easy and efficient way. No longer are the days of lots of Nagios plugins and hours of configuration file setup just to monitor CPU/Mem/Disk/Network etc. Those are the types of things that should be simple to do. Giving us more time to do the more in-depth monitoring that we really want to get to (if thats your goal).</p>
+<p>Since I am a RHEL/CentOS type of guy, this guide will follow installing OMD on a RHEL based system. But OMD also packages .deb files as well for easy install. Where I work we use Satellite/Spacewalk, so I simply upload the OMD RPM to the related channel and use yum to install. But for simplicity sake, we will just do it the old fashion way.</p>
+<ul>
+<li>Download the .rpm package from OMD&#39;s website <strong>(MAKE SURE YOU GET THE LATEST VERSION!!)</strong> At the time I wrote this article there was 0.54</li>
+</ul>
+<pre><code class="lang-bash"># wget http://omdistro.org/attachments/download/174/omd-0.54-rh60-28.x86_64.rpm
+</code></pre>
+<ul>
+<li>Install the RPM</li>
+</ul>
+<pre><code class="lang-bash"># yum localinstall omd-0.54-rh60-28.x86_64.rpm
+</code></pre>
+<ul>
+<li>Now all we need to do is create a monitoring instance, or what OMD calls a site.</li>
+</ul>
+<pre><code class="lang-bash"># omd create prod
+</code></pre>
+<ul>
+<li>After creating the monitoring instance you can either start it right away and get right to using it. Or you can do a little customization first.</li>
+<li>One thing to note, is since OMD creates contained sites for each instance, it runs that site as the user the site is called in our example above &quot;prod&quot; all of the prod instance services are running as the user prod. To admin the site you should always su to that user for configuration.</li>
+</ul>
+<pre><code class="lang-bash">OMD[prod]:~$ omd config
+</code></pre>
+<p><img src="/assets/articles/omd_screen_1.png" alt="OMD Screenshot 1"></p>
+<ul>
+<li>First thing you notice is how professional and clean the interfaces for OMD and check_mk are. Here is an example of the configuration settings for the site prod. In later articles I will go more in depth.</li></li>
+<li>After configuration startup your instance. OMD will start up each component for you.</li></li>
+</ul>
+<p><img src="/assets/articles/omd_screen_2.png" alt="OMD Screenshot 2"></p>
+<ul>
+<li>I will include a few more screenshots below so you can get an appreciation for some of the options and features available.</li></li>
+</ul>
+<p><img src="/assets/articles/omd_screen_3.png" alt="OMD Screenshot 3"></p>
+<p><img src="/assets/articles/omd_screen_4.png" alt="OMD Screenshot 4"></p>
+<ul>
+<li>Now you can simple go to the URL or hostname of your server and choose from the various interfaces that OMD comes packaged with.</li>
+<li><p>Just take your pick, you can configure the default one using omd config sitename.</p>
+</li>
+<li><p>Nagios Classic</p>
+</li>
+<li>MultiSite</li>
+<li>Thurk</li>
+<li>Icinga</li>
+<li>Shinken</li>
+<li>Nagvis (although this is not really a dashboard like the others)</li>
+</ul>
+<p>More articles to come on further configuring and actually getting hosts in and monitored. As well as the benefits and features of check_mk, and scaling OMD/Nagios to monitor large number of hosts and large infrastructures.</p>
+<p>Kyle</p>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/centos.html"><span data-hover="centos">centos</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/Check_MK.html"><span data-hover="Check_MK">Check_MK</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/Nagios.html"><span data-hover="Nagios">Nagios</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/OMD.html"><span data-hover="OMD">OMD</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/RHEL.html"><span data-hover="RHEL">RHEL</span></a></li>
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>

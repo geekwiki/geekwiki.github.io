@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/centos.html"><span data-hover="centos">centos</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/grub.html"><span data-hover="grub">grub</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/Install.html"><span data-hover="Install">Install</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/Linux.html"><span data-hover="Linux">Linux</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/redhat.html"><span data-hover="redhat">redhat</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/satellite.html"><span data-hover="satellite">satellite</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/spacewalk.html"><span data-hover="spacewalk">spacewalk</span></a></li>
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">Common Misconceptions About Linux</h2>
+          <p class="small-title"><span>June 14, 2012</span></p>
+
+          <p>Before I started learning Linux, I was very hesitant to start because of how intimidated I was from what I had heard. Now that I have much more experience, I have the ability to refute most of these misconceptions.</p>
+<p>None of these are in any specific order at all.</p>
+<p>1) Most software isn&#39;t compatible with Linux.</p>
+<p>This is kind of a silly excuse not to use Linux. Expecting every Windows Application to work on a Linux Server is like expecting the transmission from your VW Beatle to work in your Camaro SS... It won&#39;t work. However, there are many ways to get Windows applications to work on Linux, for example, you can use the application called <a href="http://www.linuxdigest.org/wp-content/uploads/about">Wine</a>. Wine is a very popular application which allows you to run Windows applications under a Linux OS. It basically tricks the application into thinking its running on Windows by creating the registry and the C:/ drive with the System32 folder and other essentials.</p>
+<p>Most of the popular or mainstream applications will usually have different install packages for Windows, OSX and Linux, but sometimes you might find an application that won&#39;t work in Wine and doesn&#39;t have an installable for Linux. The Open-Source community is big on coming with free alternatives for applications that are otherwise expensive and/or incompatible with platforms other than what they were originally designed to work with.</p>
+<p>Lets take the Microsoft Office Suite for example. Originally, you were unable to get Microsoft Word, Microsoft Outlook and Microsoft Excel installed on Ubuntu, even using Wine. But you could easily find alternatives for each of these. Instead of Microsoft Word, you could use <a href="http://www.linuxdigest.org/wp-content/uploads/www.openoffice.org">Open Office</a>, instead of Excel, you could use <a href="http://www.linuxdigest.org/wp-content/uploads/calc.html">Calc</a>, instead of Outlook, you could use <a href="http://www.linuxdigest.org/wp-content/uploads/thunderbird">Mozilla Thunderbird</a>. The Linux community works hard making free applications that you can use as alternative to proprietary software, unfortunately, not everything will work.</p>
+<p>2) Theres no support for Linux. 
+<img src="/assets/articles/linux_support.png" alt="Linux Support">
+100% not true! You can get just as much support for Linux as you can for Windows, if not more. Keep in mind, the mentality of the Open-Source type of administrator using a <em>free</em> operating system, probably believes in <em>free</em> support as well, wouldn&#39;t you think? Every distribution has their own support forum where members can jump on and help support you for free, or other forums that aren&#39;t associated with your specific distribution such as www.linuxforums.org, www.linuxquestions.com, www.linuxforum.com, and many more if you just google &quot;Linux Support&quot;.</p>
+<p>If you choose to take the paid support route, thats perfectly fine as well, sites such as <a href="http://www.linuxdigest.org/wp-content/uploads/www.redhat.com">RedHat</a> or <a href="http://www.linuxdigest.org/wp-content/uploads/www.canonical.com">Canonical</a> provide paid support for Linux distributions.</p>
+<p>3) No one uses it.
+This one actually kind of upsets me, anyone saying this or using it as an excuse not to learn Linux obviously has done little to no research. I guess to dig into this a little more, I should split it up into Linux being used by desktop users and Linux being used for servers.</p>
+<p><strong>Linux as a Desktop at Home</strong>
+I suppose I can  see why some people would believe this. For a while, you didn&#39;t really have an option to get a computer with Linux installed, you had to either get it with Windows or nothing at all, and install whatever flavor of Linux you desired, and depending on the laptop and manufacturer, you may have just voided the warranty. Because of this, not many people installed Linux for home use, just the tech savvy nerds (or <em>Linux Ninjas</em> ;-)), who knew what they were getting into.</p>
+<p>However, much has changed in the recent few years. Installing Linux won&#39;t void your warranty, and some manufacturers even give you the option to get the laptop/desktop with a popular desktop version of Linux already installed, <a href="https://www.ubuntu.com/">Ubuntu</a>. This means you are getting a laptop or desktop with the guarantee that Ubuntu will work with the hardware provided, using the latest drivers.</p>
+<p><strong>Linux as a Desktop at Work</strong>
+Back when I started doing technical support, in my young teens, someone using Linux as a desktop at work was completely unheard of. The Windows SysAdmins used Windows Desktops, the Linux SysAdmins used Windows Desktops with <a href="http://www.linuxdigest.org/wp-content/uploads/putty">PuTTY</a> to manage Linux/Unix servers, and the developers or designers all used Mac OSX, but using any flavor of Linux to support a Windows or Linux environment was out of the question, regardless of how experienced you were or if you were able to support yourself.</p>
+<p>This too has changed. In every tech company I have been contracted to or worked at, I was able to use whatever OS I felt would best give me the ability to support the environment. Meaning if I was supporting Microsoft servers, I would use a Windows desktop, if I was supporting a Linux environment, then I would use Ubuntu or whatever other flavor I preferred.</p>
+<p>The support of Linux Workstations in the corporate environment is pretty limited, which seems to be fine. The type of person who would rather use Linux than Windows every day at work and/or home, is typically the type of person who has the mentality that they can support themselves without the aid of a support department.</p>
+<p><strong>Linux as a Web Server</strong>
+<img src="/assets/articles/wsweb1.gif" alt="Linux as a Web Server">
+Linux&#39;s most popular application, bu far, is the Apache web server, which is the #1 most used web service in the world. Compared to Microsofts IIS, Apache is cheaper, easier, more secure and much more stable.</p>
+<p>I&#39;m not a big fan of throwing up graphs from other websites, especially since I can&#39;t guarantee the reliability of the research behind it, but heres a few that shows reports of which Web Servers are used the most, and what years they were taken: <a href="http://www.search-this.com/2007/06/27/microsoft-iis-vs-apache-who-serves-more/">2007 - search-this.com</a>, <a href="http://royal.pingdom.com/2008/03/18/apache-dominates-the-top-100-websites-iis-still-far-behind/">2008 - Pingdom</a>, <a href="http://www.linuxdigest.org/wp-content/uploads/30">2009 - Netcraft</a>, <a href="http://www.linuxdigest.org/wp-content/uploads/apache-web-server-hit-a-home-run-in-2010">2010 - pingdom.com</a>, <a href="http://www.linuxdigest.org/wp-content/uploads/microsoft-iis-web-server-market-share-loss">2011 - pingdom.com</a>.</p>
+<p>Now if you take a look at the first one I listed, by search-this.com taken in  2007, you will see that Microsoft/IIS is the most popular choice for Fortune 500 companies. At first, this seemed a little off to me, but when you scroll down and actually read the article, it will make much more sense. None of the Fortune 500 companies are Internet based companies, like Facebook, Google, Yahoo, etc etc, (At least not when that article was published).</p>
+<p>Companies that are not Internet based web companies don&#39;t really need to have all of the features that Apache has and IIS doesn&#39;t. Lets take <strong>Exxon Mobil</strong> as an example. It&#39;s a Fortune 500 company, but what does the website <em>www.exxonmobil.com</em> itself do? Nothing really, it&#39;s not a search engine or a social networking website, Exxons products aren&#39;t sold online. The website probably doesn&#39;t get enough traffic to actually need the extensive features of Linux/Apache, they can get by using Microsoft/IIS, and not having to hire any Linux Administrators.</p>
+<p>Previously, I worked at a Windows based hosting company, which used IIS as it&#39;s primary HTTP provider, and currently I work at a company that has just two Microsoft/IIS servers used for the billing service, (We got suckered into using Metranet, which apparently requires Microsoft Server 2003/IIS). Both companies  require the Windows servers to be rebooted every so often to release some of the allocated resources or some other reasons. This blew me away... How is this not seen as a problem?! I just never understood the mentality behind the SysAdmins who managed these servers. To them, it was &quot;typical&quot; to have to reboot the servers every week or two weeks, to me, this is like having to pull over and turn your car off then back on every 10 miles or so. On the Linux systems at my current company, if you login and look at the uptime, and it&#39;s <em>under</em> a certain time, we try to figure out who rebooted it and why, but if its a Windows server and we look at the uptime, and its <em>over</em> a certain amount of time, we start to wonder why someone hasn&#39;t rebooted it lately, and a reboot gets scheduled. If you&#39;re running an internet based company, uptime is your #1 priority, would you want a web server that needed to be rebooted like that? Nope!</p>
+<p>4) It isn&#39;t optimal for the work environment.
+This really depends on who is using it and why. If you&#39;re a secretary of the CEO of PetsMart, you&#39;re probably better off using Microsoft Windows, perfect since hes probably using it as well, and its just easier for when you&#39;re scheduling his meetings and making PowerPoint presentations.</p>
+<p>But if you&#39;re talking about the technical aspect of the company, you should pick your primary OS based off of what you are managing. If you are doing technical support for a call center, you probably still want to use Windows, if you&#39;re managing a Microsoft/IIS based web server, you should again be on a Windows computer. Now if you&#39;re managing Linux Servers, or if you&#39;re an Oracle or MySQL DBA, then wouldn&#39;t you think the most appropriate OS to be working on would be the most relevant? I manage 100% Linux servers at work, I was using Ubuntu for a while, until the only way to get better hardware was to get a Mac, which actually seems to be working out great, since OSX is based off of FreeBSD, this works just as well, if not better, than when I was using Ubuntu</p>
+<p>5) Linux is difficult, or near impossible, for a non-techy or Windows Admin to use.
+Again, this is probably easier explained split between desktop/server distros.</p>
+<p><strong>Linux Servers</strong>
+One of the main reasons that Linux servers are more stable and able to operate with less overhead than Windows, is the fact that it doesn&#39;t require a Graphical User Interface to be managed. You are able to install the X Window System, and then install Gnome or KDE or some other type of Desktop Environment, then install a service that enables you to remotely manage the server by connecting to it through a Graphical User Interface, much like RDC on Windows. The two most popular options are VNC and NX, (I prefer NX, since it operates over SSH and uses posix users, which is much more secure).</p>
+<p>Microsoft has focused on making the management of Windows Servers very &quot;Point and Click&quot;, meaning you have a good chance of being able to find out how to work an application simply by looking around in the interface and the menus of the application, and taking a couple guesses. So when a Windows administrator attempts to perform a task on a Linux server that doesn&#39;t have a GUI installed (which is about 99% of the time), they are going to have no idea how to perform a single task. When managing a Linux server, you actually have to know what you&#39;re doing, you can&#39;t blindly log into the server and click around hoping to get it right, theres no &quot;Next, Next, Next, Next&quot; buttons, just the command line and the &quot;man&quot; command to look at the manual for said command(s). This is typically why people think its &quot;impossible&quot; to manage Linux Servers.</p>
+<p><strong>Linux Desktops</strong>
+Now the problem here, is the impression of difficulty of managing a Linux Server seems to have carried over to the Linux Desktop, possibly because both are &quot;Linux&quot;? I guess since a Windows Server is just as easy to manage as a Windows Desktop, people assume a Linux Desktop is just as difficult to manage as a Linux Server, totally wrong!</p>
+<p><img src="/assets/articles/gnome_control_center2.png" alt="gnome_control_center2"></p>
+<p>Ubuntu, the most popular version of a Linux Desktop, has come a very long way. I use Ubuntu at home, and besides when I have to use the terminal to restart services for development purposes, I never use the terminal, and I see no reason to do so. Nearly everything works fine, out of the box, and is very simple to understand.</p>
+<p>Ubuntu has accomplished a very Windows-like &quot;Point and Click&quot; interface for the common home use computer. You even have the ability to select from multiple themes, most of which resemble the Windows Desktop GUI.  You get the task bar, the start menu, the window frame with a max/min/exit buttons, all programs menu, etc.</p>
+<p>Personally, I prefer using a different distribution of Linux Desktop, Linux Mint. Very similar to Ubuntu, Mint just seems to work a little better, it has some extra drivers pre-installed and some extra features. <a href="http://www.youtube.com/watch?v=0z_IIq2su2w">Heres a small youtube review</a></p>
+<p>6) You have to know how to code to use Linux, for either a Desktop or Server distribution.
+Unless you are doing some type of custom development, or writing some of your own automation tasks, theres absolutely no reason to know how to code if you are just using a desktop version of Linux, such as Ubuntu or Mint in #5 above. Most of the system files are written in Bash, Perl, Python or C, since these distributions are Open Source, you have the ability to edit these as you please to customize your desktop, but again.... You don&#39;t NEED to know how to code.</p>
+<p>But do you NEED to know how to code to manage a Linux <em>Server</em>? Technically, no. You can install the X Window System, and then install Gnome or KDE or some other type of Desktop Environment, or install a web-based control panel such as cPanel/WHM or Webmin, and manage the server from there just fine. But dont expect to get a job managing a Linux environment without the ability to automate some tasks by scripting them out.</p>
+<p>Lets face it, any SysAdmins should be able to code. Linux Administrators should learn some languages such as Perl, Python or Bash, and Windows Administrators should learn Powershell or VB. It has nothing to do with the OS itself, good System Administrators should know how to code! Why? If you&#39;re managing a Linux server, and someone tells you to perform a task such as killing the process &#39;/usr/bin/perl /opt/scripts/someScript.pl&quot;, how do you do it? Typically you just run <em>ps aux | grep someScript.pl</em>, get the process ID, then run <em>kill -9 123</em>.</p>
+<p>But what if you&#39;re given a file called servers.list, which contains 400 servers, and you&#39;re told to run it on every one of those servers, right now. What do you do then? You might be expected to write a script to complete this task. The same goes for Windows administrators, the most useful Windows SysAdmins can accomplish the same tasks that can be done in the GUI via WMI or Powershell scripts.</p>
+<p><img src="/assets/articles/RHN.png" alt="RHN"></p>
+<p>7) Linux is difficult to maintain and keep updated.
+I&#39;ve heard this one a few times before, but I dont get how it would be any harder to keep up to date than any other OS out there.</p>
+<p>If you&#39;re just using a single desktop, you get alerts about updates that need to be installed, you can easily select to ignore the updates, postpone them, or select which updates to install and which ones to ignore.</p>
+<p>If you&#39;re managing a full network of servers, there are plenty of utilities you can use to manage the updates on all the servers at once. For the CentOS distro, you can use a free utility called Spacewalk, if you&#39;re using RedHat servers, you can use RedHat Satellite, which is the exact same thing as Spacewalk, only with commercial support from RedHat, so it comes with a nice hefty price tag.</p>
+<p>Both RedHat Satellite and Spacewalk give you the ability to manage updates, errata, configuration files and much more on an entire network of servers, just as easily as it is to manage a single server.</p>
+<p>8) You can&#39;t run games on Linux.
+It really depends on what game you are trying to run, and the restrictions of the game itself. Theres usually a way to get any game working on Linux, even if it&#39;s not supposed to work on Linux or isn&#39;t supported, a lot of games can be ran via Wine, which is covered in #1.</p>
+<p>I can&#39;t exactly testify to every game out there and say whether or not it will work on Linux or not, or if it needs Wine or not. I know that you can install <strong>Cedega</strong>, which is a proprietary fork of Wine that provides the ability to install multiple games with little to no effort, however I haven&#39;t personally used it. The only games I have used was anything powered by Steam, and Battlefield 2, all of the Steam games and Battlefield 2 worked perfectly fine. Every now and then when you closed out of the game, the resolution would be a little messed up, but all you need to do is restart X.</p>
+<p>One of the biggest reasons, specific to gaming, would be the infamous World Of Warcraft. There was a rumor going around that it wasn&#39;t possible to run WoW on Linux via Wine.. Well guess what, GOOGLE IT! It is totally possible, <a href="http://www.youtube.com/watch?v=DIzgUq4Lpa4">heres a Youtube vide on how to do it</a>. However, there is a slight problem with it. WoW bans any account it perceives as a &quot;Bot&quot;, now one way it determines if it is a bot or not, is by the Operating System. The most popular bots run on Linux, so when WoW sees that your account is running on an OS other than Windows, theres a good chance they will shut down and purge your account, and you will lose all of our precious gold! What will you do then?! You might have to go outside into the sunlight.</p>
+<p>9) Too many hardware constraints and limitations.
+Theres no more hardware constraints on a Linux Server than a Windows Server, the key is to do research before you build your box.</p>
+<p>Every distribution will have a list of hardware requirements on the website, heres the requirements for Ubuntu, and RedHat. All you really need to do is google the name of your distribution + &quot;Hardware Requirements&quot;. Along with the hardware requirements, the website should contain a blacklist of hardware, which contains hardware that is supported, hardware that will not work and is unsupported, and hardware that may work but is unsupported.</p>
+<p>10) Linux is difficult to install, and you have to remove Windows/Mac to use it.
+Actually, the latest installation process of Ubuntu seems to be much more user-friendly than any install of Windows. Windows seems to be greedy and want to take up the entire harddrive for itself.</p>
+<p><img src="/assets/articles/ubuntu-install-partitions.png" alt="ubuntu-install-partitions"></p>
+<p>Ubuntu on the other hand is much more polite, it&#39;s as easy as the Windows install, where you can continuously click &quot;Next&quot; and get everything installed by default. If you have another Operating System installed on your harddrive, and you want to keep it, you can select to keep it during the Ubuntu install. Ubuntu will then setup Grub for you s you can select what OS ou wish to boot into at boot time.</p>
+<p>If you&#39;re installing a Server version of Linux, the installation might be a little more difficult, but not much more at all. Theres still the option to install via the Graphical User Interface, and simply select what applications you wish to have installed for the purpose of the server. Heres a <a href="http://www.youtube.com/watch?v=fjEfO_cMkXQ">YouTube video</a> I found showing you how to do a basic RedHat OS install.</p>
+<p>11) You have to know how to use the Command Line Interface to use it.
+This isn&#39;t true in the least bit, especially for desktop versions, there wouldn&#39;t be much point of a desktop of there wasn&#39;t a GUI for it. Desktop distributions of Linux usually come with the option to install something like <a href="http://www.kde.org/">KDE</a> or <a href="http://www.gnome.org/">GNOME</a> or any other interface you choose.
+Regarding Servers, you can setup X and manage it via a desktop just as if it was a desktop distribution, however, it&#39;s highly advised against, due to security and resource issues.
+There are other routes you can take to manage a Linux server without installing X, and having limited knowledge of the command line.</p>
+<p>One of them called <a href="http://www.parallels.com/products/plesk/">Plesk, by Parallels</a>. I can&#39;t really give a solid opinion on this, since I haven&#39;t ever actually used it, but I know it&#39;s one of the more popular &quot;solutions&quot;.</p>
+<p>Another route would be <a href="http://www.directadmin.com/install.html">DirectAdmin</a>. This is an open source application used to manage Linux servers. A lot of the cheaper hosting providers will install this for you for free if you request. It&#39;s not nearly as powerful or secure as any of the paid solutions, but it gets the job done, sometimes... I have very limited experience with DirectAdmin, and thats because it ended up breaking the configurations it was managing more than anything. I would definitely <strong>not</strong> recommend this product, not that I would recommend using any web based System Management application.</p>
+<p><img src="/assets/articles/cpanel-whm.png" alt="cpanel-whm"></p>
+<p>The most popular that comes to mind, would be <a href="http://cpanel.net/">WHM/cPanel</a>. If you get a Dedicated server or a VPS from a hosting provider, theres a good chance that they will offer this as part of the package. Though I am against any of these management applications, I will say this is the lesser of the evils. There are security holes (Just like any other application does), but they are patched relatively quickly, and the support is actually very efficient. I used cPanel to manage my first Linux server, and I feel safe recommending this for anyone looking for a web based solution.</p>
+<p>12) The Hardware Compatibility Is Very Limited.
+I don&#39;t believe this is true at all. I&#39;ve been using Linux (Desktop and Server Distros) for most of my career, and I have yet to run into a compatibility issue that held me up for longer than a few minutes. If there&#39;s something brand new, then there may not be a driver out for it yet, but rest assured, someones working n it! Just to be safe though, Google for the compatibility list for whatever hardware you are looking to install.</p>
+<p>13) Linux Isn&#39;t Susceptible to Malware or Viruses.
+This is more of a myth I would say, Linux is just as susceptible as anything else when it comes to viruses and malware. However, viruses that target Linux are much less common than ones that target Windows. I believe that the reason behind this is because Linux is more commonly used as a server, and less commonly used as a desktop, and most viruses target the desktop users via email attachments or downloads on exploited websites.  It may also be because the average Linux user simply knows how to spot a phishy website or email more efficiently than the average Windows user.</p>
+<p>Just as there are viruses, malware, and other vulnerabilities to exploit on both Linux server and desktop distributions, theres firewall software as well, some of the more popular ones are <a href="http://www.clamav.net/">ClamAV</a>, <a href="http://free.avg.com/us-en/download.prd-alf">AVG</a> and <a href="http://howtoubuntu.org/how-to-install-and-update-avast-antivirus-in-ubuntu">Avast</a>. Also, one of my personal favorites would be <a href="http://configserver.com/cp/csf.html">CSF</a>, CSF is actually just a wrapper around iptables, but it also checks for common vulnerabilities in existing applications you have installed, and gives you suggestions on how to remediate said vulnerabilities, it also gives you a &quot;security rating&quot; scale, the higher, the better!</p>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+          <li class="tag-category"><a href="http://geekwiki.local/tags/centos.html"><span data-hover="centos">centos</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/grub.html"><span data-hover="grub">grub</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/Install.html"><span data-hover="Install">Install</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/Linux.html"><span data-hover="Linux">Linux</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/redhat.html"><span data-hover="redhat">redhat</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/satellite.html"><span data-hover="satellite">satellite</span></a></li>
+          <li class="tag-category"><a href="http://geekwiki.local/tags/spacewalk.html"><span data-hover="spacewalk">spacewalk</span></a></li>
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>

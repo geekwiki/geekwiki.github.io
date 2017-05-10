@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="no-js no-touch" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="msapplication-TileImage" content="content/live/thumbs/favicon-270x270.png" />
+		<link rel="icon" href="content/live/thumbs/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" href="content/live/thumbs/favicon-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="content/live/thumbs/favicon-180x180.png" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/style-neutral.min.css" />
+		<link rel="stylesheet" href="http://geekwiki.local/css/typo-open-sans-pt-sans-narrow.min.css" />
+		<title>Geek Wiki</title>
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<header id="header">
+
+				<div class="container">
+
+					<div class="main vertical-align-middle horizontal-align-center">
+
+						<div class="logo">
+							<a href="http://geekwiki.local" title="Geek Wiki Home">
+								<img src="http://geekwiki.local/assets/gw-logo.png" width="247" height="97" srcset="http://geekwiki.local/assets/gw-logo.png 247w, http://geekwiki.local/assets/gw-logo.png 494w" sizes="(max-width: 247px) 100vw, 247px" alt="Geek Wiki Logo" />
+							</a>
+						</div><!-- // .logo -->
+            <nav class="dark">
+							<ul>
+								<li><a href="http://geekwiki.local">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="content.html">Content</a></li>
+								<li class="media-regular-none-important"><a href="articles.html">View Articles</a></li>
+								<li class="media-regular-none-important"><a href="publish.html">Publish Article</a></li>
+							</ul>
+						</nav>
+
+						<nav class="dark">
+							<ul>
+								<li><a href="neutral-typography.html">Typography</a></li>
+								<li><a href="neutral-gallery-classic.html">Gallery</a></li>
+								<li>
+									<a href="#">Pages</a>
+									<ul>
+										<li><a href="neutral-video.html">Video</a></li>
+										<li>
+											<a href="neutral-gallery-classic.html">Galleries</a>
+											<ul>
+												<li><a href="neutral-gallery-classic.html">Classic</a></li>
+												<li><a href="neutral-gallery-with-sidebar.html">With sidebar</a></li>
+												<li><a href="neutral-gallery-masonry.html">Masonry</a></li>
+											</ul>
+										</li>
+										<li><a href="neutral-widgets.html">Widgets</a></li>
+										<li><a href="neutral-contact.html">Contact</a></li>
+										<li><a href="neutral-about.html">About</a></li>
+										<li><a href="#log-in-form">Log in form</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+
+					</div><!-- // .main -->
+
+				</div><!-- // .container -->
+
+			</header>
+  <div class="container">
+
+    <article class="box-page">
+
+      <div class="box-beta">
+
+        <ul class="tags">
+        </ul>
+
+        <div class="box-content">
+
+          <h2 class="box-title">Writing your first AWS CloudFormation Template</h2>
+          <p class="small-title"><span>January 3, 2016</span></p>
+
+          <p>When starting out in AWS, and trying to understand everything about CloudFormation, I admit, I struggled a little bit. All of the different types of things that you can do in CloudFormation was both amazing and frightening at the same time. However, after using it for quite awhile now I figured I would guide others through creating their very first template.</p>
+<p>For those who don&#39;t know what CloudFormation is, it&#39;s a service that will give you an easy way to create and manage AWS resources and provide a way to update them in a orderly and predictable fashion. Basically, what this means is it&#39;s a way for your to basically write a template that you can run against AWS to provision your entire environment as you need.</p>
+<p>The reason I really enjoy using CloudFormation, is because it allows me to create the exact same set of ec2 instances, security groups, load balancers, etc. in the exact same way every single time. That means that when I go to create a Stage or Production version of a dev environment I created, I can do so quickly and easily.</p>
+<p>In this example, we&#39;re going to create an EC2 instance with a load balancer in front of it (Yes, you don&#39;t need a load balancer in front of a single node typically, I just wanted to show you an example of how to create a load balancer and put EC2 instances behind it). So to get us started, there are a few terms and information you should know before hand so you understand. The first thing to know, is that all a CloudFormation Template is, is a JSON-formatted text file that describes your AWS infrastructure. There are also a lot of other sections inside a CloudFormation template that you can use. Let&#39;s list them out and give them a brief description of what they are.</p>
+<ul>
+<li><strong>AWSTemplateFormatVersion</strong> -  (OPTIONAL) Specifies the AWS CloudFormation template version that the template conforms to. The template format version is not the same as the API or WSDL version. The template format version can change independently of the API and WSDL versions.</li>
+<li><strong>Description</strong> - (OPTIONAL) A text string that describes the template. This section must always follow the template format version section.</li>
+<li><strong>Metadata</strong> - (OPTIONAL) JSON objects that provide additional information about the template.</li>
+<li><strong>Parameters</strong> - (OPTIONAL) Specifies values that you can pass in to your template at runtime (when you create or update a stack). You can refer to parameters in the Resources and Outputs sections of the template.</li>
+<li><strong>Mappings</strong> - (OPTIONAL) A mapping of keys and associated values that you can use to specify conditional parameter values, similar to a lookup table. You can match a key to a corresponding value by using the Fn::FindInMap intrinsic function in the Resources and Outputs section.</li>
+<li><strong>Conditions</strong> - (OPTIONAL) Defines conditions that control whether certain resources are created or whether certain resource properties are assigned a value during stack creation or update. For example, you could conditionally create a resource that depends on whether the stack is for a production or test environment.</li>
+<li><strong>Resources</strong> - <span style="color: #ff0000;">(REQUIRED)</span> Specifies the stack resources and their properties, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket. You can refer to resources in theResources and Outputs sections of the template.</li>
+<li><strong>Outputs</strong> - (OPTIONAL) Describes the values that are returned whenever you view your stack&#39;s properties. For example, you can declare an output for an Amazon S3 bucket name and then call the aws cloudformation describe-stacks AWS CLI command to view the name.</li>
+</ul>
+<p>Don&#39;t let all of the above scare you, as you can see by reading through all of them, the only one that is actually needed and is required is the Resources section and that&#39;s really the meat of this whole thing. So let&#39;s get started with our template, we&#39;ll skip past all of the optional sections and only work on the resources section in this example. So let&#39;s get started.</p>
+<p>The first thing that we want to do, is create the base of our CloudFormation template with the opening and closing brackets and the Resources section like we need, and it should look like this:</p>
+<pre><code class="lang-json">{
+  &quot;Resources&quot; : {
+  }
+}
+</code></pre>
+<p>Now that we have the base of our template, we will want to start off by creating two EC2 instances. In order to create an EC2 instance, we need to create a Security Group so our ports that we need are open. So to do that we would use the AWS::EC2::SecurityGroup type and specify the Ingress options of the instances. So your template should look like this:</p>
+<pre><code class="lang-json">{
+  &quot;Resources&quot; : {
+    &quot;InstanceSecurityGroup&quot; : {
+      &quot;Type&quot; : &quot;AWS::EC2::SecurityGroup&quot;,
+      &quot;Properties&quot; : {
+        &quot;GroupDescription&quot; : &quot;Enable SSH access via port 22&quot;,
+        &quot;SecurityGroupIngress&quot; : [
+          { &quot;IpProtocol&quot; : &quot;tcp&quot;, &quot;FromPort&quot; : &quot;22&quot;, &quot;ToPort&quot; : &quot;22&quot;, &quot;CidrIp&quot; : &quot;0.0.0.0/0&quot; },
+          { &quot;IpProtocol&quot; : &quot;tcp&quot;, &quot;FromPort&quot; : &quot;80&quot;, &quot;ToPort&quot; : &quot;80&quot;, &quot;CidrIp&quot; : &quot;0.0.0.0/0&quot; }
+        ]
+      }
+    }
+  }
+}
+</code></pre>
+<p>So, let&#39;s go through and understand what we did above. The first is as mentioned above we need to declare the type which in this case is AWS::EC2::SecurityGroup. Then we pass in a Properties section for the type and give it a description and then specify the SecurityGroupIngress rules. In the example above, for the Ingress rules we are opening port 22 (SSH) and port 80 (HTTP) for the entire world. Typically you would want to lock down SSH to a particular IP address or IP address range for security, but because this is just an example we&#39;ll keep it open.</p>
+<p>Now that we have our Security Group, we can create some EC2 Instances and use the above security group. To do this we will use the AWS::EC2::Instance type (I&#39;m sure you guessed that one!) and we&#39;ll reference the SG created above. So your template should look something like this:</p>
+<pre><code class="lang-json">{
+  &quot;Resources&quot; : {
+    &quot;Ec2Instance&quot; : {
+      &quot;Type&quot; : &quot;AWS::EC2::Instance&quot;,
+      &quot;Properties&quot; : {
+        &quot;SecurityGroups&quot; : [ { &quot;Ref&quot; : &quot;InstanceSecurityGroup&quot; } ],
+        &quot;KeyName&quot; : &quot;mykey&quot;,
+        &quot;ImageId&quot; : &quot;ami-7a11e213&quot;
+      }
+    },
+
+    &quot;InstanceSecurityGroup&quot; : {
+      &quot;Type&quot; : &quot;AWS::EC2::SecurityGroup&quot;,
+      &quot;Properties&quot; : {
+        &quot;GroupDescription&quot; : &quot;Enable SSH access via port 22&quot;,
+        &quot;SecurityGroupIngress&quot; : [
+          { &quot;IpProtocol&quot; : &quot;tcp&quot;, &quot;FromPort&quot; : &quot;22&quot;, &quot;ToPort&quot; : &quot;22&quot;, &quot;CidrIp&quot; : &quot;0.0.0.0/0&quot; },
+          { &quot;IpProtocol&quot; : &quot;tcp&quot;, &quot;FromPort&quot; : &quot;80&quot;, &quot;ToPort&quot; : &quot;80&quot;, &quot;CidrIp&quot; : &quot;0.0.0.0/0&quot; }
+        ]
+      }
+    }
+  }
+}
+</code></pre>
+<p>Now let&#39;s understand what we just did. We used the type mentioned above AWS::EC2::Instance and passed in properties for the type. In the properties we referenced the security group we created earlier by using the { &quot;Ref&quot; : &quot;&quot; } function, this is how you can reference other resources that you have created in the template and we passed in &quot;mykey&quot; ssh key. Please note, you will need to create an SSH key before hand for this example, to create the SSH key read <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-create-keypair.html">this document</a>. We also are specifying an AMI (Amazon Machine Image) ID to use for the EC2 instance. Pretty neat, huh?</p>
+<p>Now, the next thing we need to do is create a load balancer and reference the EC2 instance that was created. So your template should look like this now:</p>
+<pre><code class="lang-json">{
+  &quot;Resources&quot; : {
+    &quot;Ec2Instance&quot; : {
+      &quot;Type&quot; : &quot;AWS::EC2::Instance&quot;,
+      &quot;Properties&quot; : {
+        &quot;SecurityGroups&quot; : [ { &quot;Ref&quot; : &quot;InstanceSecurityGroup&quot; } ],
+        &quot;KeyName&quot; : &quot;mykey&quot;,
+        &quot;ImageId&quot; : &quot;ami-7a11e213&quot;
+      }
+    },
+
+    &quot;InstanceSecurityGroup&quot; : {
+      &quot;Type&quot; : &quot;AWS::EC2::SecurityGroup&quot;,
+      &quot;Properties&quot; : {
+        &quot;GroupDescription&quot; : &quot;Enable SSH access via port 22&quot;,
+        &quot;SecurityGroupIngress&quot; : [
+          { &quot;IpProtocol&quot; : &quot;tcp&quot;, &quot;FromPort&quot; : &quot;22&quot;, &quot;ToPort&quot; : &quot;22&quot;, &quot;CidrIp&quot; : &quot;0.0.0.0/0&quot; },
+          { &quot;IpProtocol&quot; : &quot;tcp&quot;, &quot;FromPort&quot; : &quot;80&quot;, &quot;ToPort&quot; : &quot;80&quot;, &quot;CidrIp&quot; : &quot;0.0.0.0/0&quot; }
+        ]
+      }
+    },
+
+    &quot;ElasticLoadBalancer&quot; : {
+      &quot;Type&quot; : &quot;AWS::ElasticLoadBalancing::LoadBalancer&quot;,
+      &quot;Properties&quot; : {
+        &quot;AvailabilityZones&quot; : { &quot;Fn::GetAZs&quot; : &quot;&quot; },
+        &quot;Instances&quot; : [ { &quot;Ref&quot; : &quot;Ec2Instance&quot; } ],
+        &quot;Listeners&quot; : [ {
+          &quot;LoadBalancerPort&quot; : &quot;80&quot;,
+          &quot;InstancePort&quot; : &quot;80&quot;,
+          &quot;Protocol&quot; : &quot;HTTP&quot;
+        } ],
+        &quot;HealthCheck&quot; : {
+          &quot;Target&quot; : { &quot;Fn::Join&quot; : [ &quot;&quot;, [&quot;HTTP:&quot;, &quot;80&quot;, &quot;/&quot;]]},
+          &quot;HealthyThreshold&quot; : &quot;3&quot;,
+          &quot;UnhealthyThreshold&quot; : &quot;5&quot;,
+          &quot;Interval&quot; : &quot;30&quot;,
+          &quot;Timeout&quot; : &quot;5&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>As you can see, the load balancer type that was used was AWS::ElasticLoadBalancing::LoadBalancer, and it needs quite a bit more properties values for it to work. The first thing is the load balancer needs to know what availability zones to use, in this example we&#39;ll use the Fn::GetAZs which will automatically populate the availability zones based on the region you are in. Then we reference the Ec2Instance, configured which load balancer port and instance port to use and what protocol. After that we needed to specify a Health Check so the load balancer knows when the EC2 instance is up or down.</p>
+<p>Phew. That seems like a lot, but once you start to understand it, it becomes second nature and you&#39;ll find yourself writing this in your sleep. Now that we have our template created, we can finally run it against AWS. To do this you will need to log into the <a href="https://aws.amazon.com/console/">AWS Console</a>.</p>
+<p>Once you&#39;re logged in, you will want to navigate over to CloudFormation and click on &quot;Create a Stack&quot;. In this section you&#39;ll also see the new Design template option which you can use to visually create the CloudFormation template that you just created. However, I always feel like it&#39;s best to know the manual way of doing it because when you can manually do it, you can find ways to automate it.. But that&#39;s really a personal preference. So, click on &quot;Create New Stack&quot; button that looks like this:</p>
+<p><img src="/assets/articles/create-stack.png" alt="create stack"></p>
+<p>Then click on &quot;Upload a template to Amazon S3&quot; and then click on &quot;Choose File&quot; and navigate and select where you saved your template on your computer.</p>
+<p><img src="/assets/articles/upload-template.png" alt="upload template"></p>
+<p>Then click on Next. On the next screen simply type in what you want to name the Stack, and click next.</p>
+<p><img src="/assets/articles/stack-name.png" alt="stack name"></p>
+<p>Then you can specify any tags you want to use, and when done click next.</p>
+<p><img src="/assets/articles/stack-options.png" alt="stack options"></p>
+<p>Then you&#39;ll come to a review screen and simply review all of the information you put in to ensure it&#39;s correct and then click Create and watch your EC2 instance come up with a load balancer in front of it.</p>
+<p>And you&#39;re done! Let me know if you run into any issues or have any questions. I&#39;ll be writing a follow up post to this to start using some of the other sections and using a parameters file.</p>
+
+
+          <div class="share">
+            <span>Share:</span>
+            <ul>
+              <li><a data-icon="facebook" href="#"></a></li>
+              <li><a data-icon="twitter" href="#"></a></li>
+              <li><a data-icon="googleplus" href="#"></a></li>
+              <li><a data-icon="pinterest" href="#"></a></li>
+              <li><a data-icon="linkedin" href="#"></a></li>
+              <li><a data-icon="stumbleupon" href="#"></a></li>
+            </ul>
+          </div><!-- // .share -->
+
+        </div><!-- // .box-content -->
+
+        <ul class="tags">
+        </ul><!-- // .tags -->
+
+      </div><!-- // .box-beta -->
+
+    </article><!-- // .box-page -->
+
+    <section class="box-author">
+
+      <figure class="featured-image">
+        <img src="content/neutral/thumbs/mia-320x320.jpg" width="320" height="320" srcset="content/neutral/thumbs/mia-320x320.jpg 320w, content/neutral/thumbs/mia-640x640.jpg 640w" sizes="(max-width: 320px) 100vw, 320px" alt="Mia" />
+      </figure>
+
+      <div class="box-content">
+
+        <div class="share featured">
+          <span>Find me at:</span>
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="behance" href="#"></a></li>
+            <li><a data-icon="dribbble" href="#"></a></li>
+            <li><a data-icon="vine" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+        <h2 class="box-title">Mia Swanson</h2>
+
+        <p>Eget cum pharetra cillum sagittis euismod. Massa cillum do convallis vitae sunt amet habitant viverra aliqua. Lacus esse qui praesent vulputate posuere felis aute maecenas curabitur ipsum. Accumsan massa quam eleifend tellus. Natoque pariatur ultricies ac qui. Vehicula semper consequat urna eiusmod.</p>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-author -->
+
+    <section id="comments" class="box-comments">
+
+      <div class="box-content">
+
+        <h3 class="box-title"><span>4 Comments</span></h3>
+
+        <ul class="comments">
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 days ago</span></cite>
+              <div class="comment-content">
+                <p>Pulvinar lacus mi pede neque turpis per viverra adipisicing sint ultricies. Rutrum nisl quis deserunt labore himenaeos praesent pede torquent sem in esse. Curae aenean nullam orci et. Vitae ornare tellus aliqua curae.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+            <ul class="sub-comments">
+
+              <li class="comment">
+
+                <div class="body">
+
+                  <img src="content/neutral/thumbs/mia-64x64.jpg" width="64" height="64" srcset="content/neutral/thumbs/mia-64x64.jpg 64w, content/neutral/thumbs/mia-128x128.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Mia" />
+                  <div class="toolbar"><a href="#respond">reply</a></div>
+                  <cite class="author"><a href="neutral-about.html">Mia Swanson</a> <span class="timestamp">1 day ago</span></cite>
+                  <div class="comment-content">
+                    <p>Nunc dapibus rhoncus volutpat taciti dis vulputate odio. Bibendum lacinia donec feugiat nisi officia morbi ligula.</p>
+                  </div>
+
+                </div><!-- // .body -->
+
+                <ul class="sub-comments">
+
+                  <li class="comment">
+
+                    <div class="body">
+
+                      <img src="content/neutral/thumbs/adam-64x64-04x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/adam-64x64-04x05.jpg 64w, content/neutral/thumbs/adam-128x128-04x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Adam" />
+                      <div class="toolbar"><a href="#respond">reply</a></div>
+                      <cite class="author">Adam Sorenson <span class="timestamp">4 hours ago</span></cite>
+                      <div class="comment-content">
+                        <p>Commodo accumsan mollis euismod primis. Est bibendum minim donec viverra tellus lorem elit tristique. Himenaeos aenean laborum laoreet tortor iaculis nisi aliquam vel pellentesque cras. Volutpat vivamus sociosqu tempus fames nunclorem rhoncus metus iaculis ex. Nascetur nibh in lacinia.</p>
+                      </div>
+
+                    </div><!-- // .body -->
+
+                  </li><!-- // .comment -->
+
+                </ul><!-- // .sub-comments -->
+
+              </li><!-- // .comment -->
+
+            </ul><!-- // .sub-comments -->
+
+          </li><!-- // .comment -->
+
+          <li class="comment">
+
+            <div class="body">
+
+              <img src="content/neutral/thumbs/greta-64x64-07x05.jpg" width="64" height="64" srcset="content/neutral/thumbs/greta-64x64-07x05.jpg 64w, content/neutral/thumbs/greta-128x128-07x05.jpg 128w" sizes="(max-width: 64px) 100vw, 64px" class="avatar" alt="Greta" />
+              <div class="toolbar"><a href="#respond">reply</a></div>
+              <cite class="author">Greta Biancolli <span class="timestamp">4 hours ago</span></cite>
+              <div class="comment-content">
+                <p>Officia magna sunt mi magnis ultricies mattis curae ante lacinia per. Fringilla facilisi pariatur donec vel magna laboris vivamus quis dapibus aute. Inceptos augue vivamus nunclorem tellus mus. Auctor a sollicitudin quisque lacus cillum montes nunc placerat. Porttitor tellus vivamus officia dignissim.</p>
+              </div>
+
+            </div><!-- // .body -->
+
+          </li><!-- // .comment -->
+
+        </ul>
+
+        <h3 id="#respond" class="small-title"><span>Leave a comment</span></h3>
+
+        <form action="#filename" method="post">
+
+          <div class="flex-columns">
+
+            <div class="row">
+
+              <div class="cell-1-3"><input type="text" placeholder="your name*" required /></div>
+              <div class="cell-1-3"><input type="email" placeholder="your e-mail address*" required /></div>
+              <div class="cell-1-3"><input type="text" placeholder="your site" /></div>
+              <div class="cell-1-1"><textarea placeholder="message" required></textarea></div>
+
+              <div class="cell-1-1 text-align-center"><input type="submit" value="Submit comment" /></div>
+
+            </div>
+
+          </div><!-- // .flex-columns -->
+
+        </form>
+
+      </div><!-- // .box-content -->
+
+    </section><!-- // .box-comments -->
+
+    <div class="box">
+
+      <div class="box-content">
+
+        <div class="navigation">
+          <div>
+
+            <a href="neutral-post-3.html" class="prev">
+              <span class="nav-link"><span>&lsaquo; previous</span></span>
+              <img src="content/neutral/thumbs/flowers-pinky-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/flowers-pinky-560x315.jpg 560w, content/neutral/thumbs/flowers-pinky-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Flowers pinky" />
+              <span class="post-title">Field photo session with new budget camera.<br />Light conditions, hard subject.</span>
+            </a>
+
+            <a href="neutral-post-5.html" class="next">
+              <span class="nav-link"><span>next &rsaquo;</span></span>
+              <img src="content/neutral/thumbs/interior-man-560x315.jpg" width="560" height="315" srcset="content/neutral/thumbs/interior-man-560x315.jpg 560w, content/neutral/thumbs/interior-man-1120x630.jpg 1120w" sizes="(max-width: 560px) 100vw, 560px" class="thumbnail" alt="Interior man" />
+              <span class="post-title">10 practical interior design advices</span>
+            </a>
+
+          </div>
+        </div><!-- // .navigation -->
+
+      </div><!-- // .box-content -->
+
+    </div><!-- // .box -->
+
+  </div><!-- // .container -->
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="end-note">
+
+      <div class="align-left">
+        <p>&copy; Your name here, 2017</p>
+      </div>
+
+      <div class="align-right">
+
+        <div class="share featured">
+          <ul>
+            <li><a data-icon="facebook" href="#"></a></li>
+            <li><a data-icon="twitter" href="#"></a></li>
+            <li><a data-icon="youtube" href="#"></a></li>
+          </ul>
+        </div><!-- // .share -->
+
+      </div>
+
+      <a class="back" href="#wrapper" title="Back to top"></a>
+
+    </div><!-- // .end-note -->
+
+  </div><!-- // .container -->
+
+</footer>
+
+</div><!-- // #wrapper -->
+
+<div id="log-in-form" class="modal">
+
+<div class="modal-content">
+
+  <img src="content/neutral/thumbs/logo-212x83.png" width="212" height="83" srcset="content/neutral/thumbs/logo-212x83.png 212w, content/neutral/thumbs/logo-424x166.png 424w" sizes="(max-width: 212px) 100vw, 212px" class="align-center" alt="Logo" />
+
+  <form action="#filename" method="post">
+
+    <p><input type="email" placeholder="e-mail" class="width-full" required /></p>
+    <p><input type="password" placeholder="password" class="width-full" required /></p>
+    <p><input type="submit" class="width-full" value="Log in" /></p>
+
+    <p class="form-links">
+      <a href="#filename">Sign up &rsaquo;</a>
+      <a href="#filename">Forget password?</a>
+    </p>
+
+  </form>
+
+</div><!-- // .modal-content -->
+
+<a class="close"></a>
+
+</div><!-- // #log-in-form.modal -->
+
+<script src="components/jquery/jquery.min.js"></script>
+<script src="js/app.min.js"></script>
+
+<script>
+new Live;
+</script>
+
+</body>
+</html>
