@@ -10,8 +10,8 @@
       <title>Blog</title>
       <link>http://localhost:3333</link>
     </image>
-    <pubDate>Wed, 10 May 2017 00:43:58 GMT</pubDate>
-    <lastBuildDate>Wed, 10 May 2017 00:43:58 GMT</lastBuildDate>
+    <pubDate>Wed, 10 May 2017 00:46:32 GMT</pubDate>
+    <lastBuildDate>Wed, 10 May 2017 00:46:32 GMT</lastBuildDate>
     <language>en-US</language>
     <generator>Metalsmith custom plugin</generator>
     <ttl>60</ttl>
@@ -2905,6 +2905,66 @@ while True :
       </content:encoded>
     </item>
     <item>
+      <title><![CDATA[Installing Graphite on CentOS 6]]></title>
+      <description><![CDATA[]]></description>
+      <link>http://localhost:3333/installing-graphite-on-centos-6/</link>
+      <guid isPermaLink="true">http://localhost:3333/installing-graphite-on-centos-6/</guid>
+      <dc:creator><![CDATA[[object Object]]]></dc:creator>
+      <pubDate>Sun, 01 Jul 2012 00:00:00 GMT</pubDate>
+      <content:encoded>
+        <![CDATA[<p>This is the fastest way I have found to get Graphite installed. It is a rough tutorial but this is the fasteset way I have found to get it up and running.</p>
+<ul>
+<li>Install epel repo</li>
+</ul>
+<pre><code class="lang-bash">rpm -ivh http://mirror.us.leaseweb.net/epel/6/i386/epel-release-6-5.noarch.rpm
+</code></pre>
+<ul>
+<li>Install dependencies</li>
+</ul>
+<pre><code class="lang-bash">yum install Django pycairo bitmap bitmap-fonts python-pip gcc python-devel mod_wsgi perl django-tagging
+</code></pre>
+<ul>
+<li>You can try and compile from source, but if it can be avoided always use some sort of package manager, in this case we will use Python Pip!</li>
+</ul>
+<pre><code class="lang-bash">pip-python install carbon
+pip-python install carbon
+pip-python install whisper
+pip-python install graphite-web
+</code></pre>
+<ul>
+<li>Setup basic conf files (you may need to configure them more later, but for now example confs will do to get the basic interface up</li>
+</ul>
+<pre><code class="lang-bash">cd /opt/graphite/conf
+cp carbon.conf.example carbon.conf
+cp storage-schemas.conf.example storage-schemas.conf
+cp graphite.wsgi.example graphite.wsgi
+</code></pre>
+<ul>
+<li>Setup httpd conf file: Use this as an example: <a href="http://bazaar.launchpad.net/~graphite-dev/graphite/trunk/view/head:/examples/example-graphite-vhost.conf">Example Graphite Vhost</a></li>
+</ul>
+<pre><code class="lang-bash">vi /etc/httpd/conf.d/graphite.conf
+</code></pre>
+<ul>
+<li>Setup graphite webapp</li>
+</ul>
+<h1 id="enable-debug">Enable debug</h1>
+<pre><code class="lang-bash">cd /opt/graphite/webapp/graphite
+cp local_settings.py.example local_settings.py
+vi local_settings.py
+</code></pre>
+<pre><code class="lang-bash">python manage.py syncdb
+</code></pre>
+<h1 id="start-carbon">Start carbon</h1>
+<pre><code class="lang-bash">cd /opt/graphite/
+./bin/carbon-cache.py start
+</code></pre>
+<h1 id="chown-log-file-dir-so-apache-can-write">Chown log file dir so apache can write</h1>
+<pre><code class="lang-bash">chown -R apache:apache /opt/graphite/storage/
+</code></pre>
+]]>
+      </content:encoded>
+    </item>
+    <item>
       <title><![CDATA[Perl Tips And Tricks (Part 1)]]></title>
       <description><![CDATA[]]></description>
       <link>http://localhost:3333/perl-tips-and-tricks-part-1/</link>
@@ -3116,66 +3176,6 @@ This can be a HUGE aid in debugging longer scripts that you&#39;re having issues
       </content:encoded>
     </item>
     <item>
-      <title><![CDATA[Installing Graphite on CentOS 6]]></title>
-      <description><![CDATA[]]></description>
-      <link>http://localhost:3333/installing-graphite-on-centos-6/</link>
-      <guid isPermaLink="true">http://localhost:3333/installing-graphite-on-centos-6/</guid>
-      <dc:creator><![CDATA[[object Object]]]></dc:creator>
-      <pubDate>Sun, 01 Jul 2012 00:00:00 GMT</pubDate>
-      <content:encoded>
-        <![CDATA[<p>This is the fastest way I have found to get Graphite installed. It is a rough tutorial but this is the fasteset way I have found to get it up and running.</p>
-<ul>
-<li>Install epel repo</li>
-</ul>
-<pre><code class="lang-bash">rpm -ivh http://mirror.us.leaseweb.net/epel/6/i386/epel-release-6-5.noarch.rpm
-</code></pre>
-<ul>
-<li>Install dependencies</li>
-</ul>
-<pre><code class="lang-bash">yum install Django pycairo bitmap bitmap-fonts python-pip gcc python-devel mod_wsgi perl django-tagging
-</code></pre>
-<ul>
-<li>You can try and compile from source, but if it can be avoided always use some sort of package manager, in this case we will use Python Pip!</li>
-</ul>
-<pre><code class="lang-bash">pip-python install carbon
-pip-python install carbon
-pip-python install whisper
-pip-python install graphite-web
-</code></pre>
-<ul>
-<li>Setup basic conf files (you may need to configure them more later, but for now example confs will do to get the basic interface up</li>
-</ul>
-<pre><code class="lang-bash">cd /opt/graphite/conf
-cp carbon.conf.example carbon.conf
-cp storage-schemas.conf.example storage-schemas.conf
-cp graphite.wsgi.example graphite.wsgi
-</code></pre>
-<ul>
-<li>Setup httpd conf file: Use this as an example: <a href="http://bazaar.launchpad.net/~graphite-dev/graphite/trunk/view/head:/examples/example-graphite-vhost.conf">Example Graphite Vhost</a></li>
-</ul>
-<pre><code class="lang-bash">vi /etc/httpd/conf.d/graphite.conf
-</code></pre>
-<ul>
-<li>Setup graphite webapp</li>
-</ul>
-<h1 id="enable-debug">Enable debug</h1>
-<pre><code class="lang-bash">cd /opt/graphite/webapp/graphite
-cp local_settings.py.example local_settings.py
-vi local_settings.py
-</code></pre>
-<pre><code class="lang-bash">python manage.py syncdb
-</code></pre>
-<h1 id="start-carbon">Start carbon</h1>
-<pre><code class="lang-bash">cd /opt/graphite/
-./bin/carbon-cache.py start
-</code></pre>
-<h1 id="chown-log-file-dir-so-apache-can-write">Chown log file dir so apache can write</h1>
-<pre><code class="lang-bash">chown -R apache:apache /opt/graphite/storage/
-</code></pre>
-]]>
-      </content:encoded>
-    </item>
-    <item>
       <title><![CDATA[Viewing Bash Exit Status Codes With Pipes]]></title>
       <description><![CDATA[]]></description>
       <link>http://localhost:3333/viewing-bash-exit-status-codes-with-pipes/</link>
@@ -3213,23 +3213,6 @@ else
  echo &quot;it worked!&quot;
 fi
 </code></pre>
-]]>
-      </content:encoded>
-    </item>
-    <item>
-      <title><![CDATA[How to quickly and efficiently delete all data in a LARGE MySQL table using TRUNCATE]]></title>
-      <description><![CDATA[]]></description>
-      <link>http://localhost:3333/how-to-quickly-and-efficiently-delete-all-data-in-a-large-mysql-table-using-truncate/</link>
-      <guid isPermaLink="true">http://localhost:3333/how-to-quickly-and-efficiently-delete-all-data-in-a-large-mysql-table-using-truncate/</guid>
-      <dc:creator><![CDATA[[object Object]]]></dc:creator>
-      <pubDate>Thu, 21 Jun 2012 00:00:00 GMT</pubDate>
-      <content:encoded>
-        <![CDATA[<p>If you have a very large table in MySQL and you need to delete all the data from it. Instead of using the DELETE syntax or DELETE FROM tablename; It is best to use the TRUNCATE syntax.</p>
-<p>This will delete all data in the table very quickly. In MySQL the table is actually dropped and recreated, hence the speed of the query.</p>
-<pre><code class="lang-bash">$ mysql&gt; TRUNCATE TABLE tablename;
-</code></pre>
-<p>Query OK, 0 rows affected (10.34 sec)[/bash]</p>
-<p><strong>Note:</strong> The number of deleted rows for MyISAM tables returned is zero; for INNODB it returns the actual number deleted.</p>
 ]]>
       </content:encoded>
     </item>
@@ -3309,6 +3292,23 @@ What we have to do now is actually extend the logical volume (vg00) so that it c
 <p>Also a side note, if you are using SAN backed storage like I am (In this case Netapp). You must make sure you align your VMDK before adding it to your vgroup. I will also be writing an article on how to do this and why its important for performance.</p>
 <p>Thanks for reading!</p>
 <p>Kyle</p>
+]]>
+      </content:encoded>
+    </item>
+    <item>
+      <title><![CDATA[How to quickly and efficiently delete all data in a LARGE MySQL table using TRUNCATE]]></title>
+      <description><![CDATA[]]></description>
+      <link>http://localhost:3333/how-to-quickly-and-efficiently-delete-all-data-in-a-large-mysql-table-using-truncate/</link>
+      <guid isPermaLink="true">http://localhost:3333/how-to-quickly-and-efficiently-delete-all-data-in-a-large-mysql-table-using-truncate/</guid>
+      <dc:creator><![CDATA[[object Object]]]></dc:creator>
+      <pubDate>Thu, 21 Jun 2012 00:00:00 GMT</pubDate>
+      <content:encoded>
+        <![CDATA[<p>If you have a very large table in MySQL and you need to delete all the data from it. Instead of using the DELETE syntax or DELETE FROM tablename; It is best to use the TRUNCATE syntax.</p>
+<p>This will delete all data in the table very quickly. In MySQL the table is actually dropped and recreated, hence the speed of the query.</p>
+<pre><code class="lang-bash">$ mysql&gt; TRUNCATE TABLE tablename;
+</code></pre>
+<p>Query OK, 0 rows affected (10.34 sec)[/bash]</p>
+<p><strong>Note:</strong> The number of deleted rows for MyISAM tables returned is zero; for INNODB it returns the actual number deleted.</p>
 ]]>
       </content:encoded>
     </item>
